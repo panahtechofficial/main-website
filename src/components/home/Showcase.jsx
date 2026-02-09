@@ -1,0 +1,177 @@
+"use client";
+
+import Image from "next/image";
+import { useRef, useState, useEffect, useCallback } from "react";
+import gsap from "gsap";
+import LogoMarquee from "../ui/LogoMarquee";
+import { portofolio } from "@/data/portofolio";
+
+export default function Showcase() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const slideRef = useRef(null);
+    const timerRef = useRef(null);
+    const progressRef = useRef(null);
+
+    const SLIDE_DURATION = 10; // seconds
+
+    const goToSlide = useCallback((index) => {
+        if (index === currentIndex) return;
+
+        const direction = index > currentIndex ? 1 : -1;
+
+        // Animate out current content
+        gsap.to(slideRef.current, {
+            opacity: 0,
+            x: -30 * direction,
+            duration: 0.3,
+            ease: "power2.in",
+            onComplete: () => {
+                setCurrentIndex(index);
+                // Animate in new content
+                gsap.fromTo(slideRef.current, 
+                    { opacity: 0, x: 30 * direction },
+                    { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }
+                );
+            }
+        });
+    }, [currentIndex]);
+
+    const nextSlide = useCallback(() => {
+        const next = (currentIndex + 1) % portofolio.length;
+        goToSlide(next);
+    }, [currentIndex, goToSlide]);
+
+    // Auto-slide timer with progress animation
+    useEffect(() => {
+        // Reset and animate progress bar
+        if (progressRef.current) {
+            gsap.killTweensOf(progressRef.current);
+            gsap.fromTo(progressRef.current,
+                { scaleX: 0 },
+                { scaleX: 1, duration: SLIDE_DURATION, ease: "none" }
+            );
+        }
+
+        // Set timer for next slide
+        timerRef.current = setTimeout(nextSlide, SLIDE_DURATION * 1000);
+
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+            if (progressRef.current) gsap.killTweensOf(progressRef.current);
+        };
+    }, [currentIndex, nextSlide]);
+
+    const currentProject = portofolio[currentIndex];
+
+    return (
+        <div className="w-full flex flex-col gap-6">
+            
+            {/* Text Info Card */}
+            <div className="bg-white rounded-[32px] p-10 shadow-sm border border-gray-100">
+                <div className="flex items-center gap-2 mb-6">
+                    <span className="relative flex size-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+                        <span className="relative inline-flex size-2 rounded-full bg-primary"></span>
+                    </span>
+                    <span className="text-primary font-bold uppercase text-xs tracking-wider">Showcase</span>
+                </div>
+
+                <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight mb-4">
+                    PanahTech is building <br />
+                    <span className="text-primary">the future</span>
+                </h2>
+
+                <p className="text-secondary text-sm md:text-base max-w-xl">
+                    We develop high-impact web applications, AI integrations, and IoT dashboards
+                    that empower businesses to scale. From concept to deployment.
+                </p>
+            </div>
+
+            {/* Project Preview Cards */}
+            <div className="flex flex-col md:flex-row gap-6">
+                {/* Project Info - Carousel */}
+                <div className="flex-2 bg-white rounded-[32px] p-10 shadow-sm border border-zinc-100 flex flex-col justify-between relative overflow-hidden group min-h-[280px]">
+                    {/* Slide Content */}
+                    <div ref={slideRef} className="z-10 relative">
+                        <h3 className="text-3xl font-black text-black mb-4">{currentProject.title}</h3>
+
+                        <p className="text-gray-500 text-sm mb-8 max-w-xs">
+                            {currentProject.description}
+                        </p>
+
+                        <a 
+                            href={currentProject.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="bg-primary text-white px-6 py-3 rounded-full font-bold text-sm w-max hover:bg-orange-600 transition-colors inline-block"
+                        >
+                            View live
+                        </a>
+                    </div>
+
+                    {/* Dot Pagination */}
+                    <div className="z-10 relative flex items-center gap-2 mt-6">
+                        {portofolio.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => goToSlide(index)}
+                                className={`relative w-2 h-2 rounded-full transition-all duration-300 ${
+                                    index === currentIndex 
+                                        ? 'bg-primary w-6' 
+                                        : 'bg-gray-300 hover:bg-gray-400'
+                                }`}
+                                aria-label={`Go to slide ${index + 1}`}
+                            >
+                                {/* Progress indicator on active dot */}
+                                {index === currentIndex && (
+                                    <span 
+                                        ref={progressRef}
+                                        className="absolute inset-0 bg-orange-600 rounded-full origin-left"
+                                        style={{ transform: 'scaleX(0)' }}
+                                    />
+                                )}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Background Image */}
+                    <Image 
+                        src={currentProject.image} 
+                        alt={currentProject.title}
+                        width={500} 
+                        height={500} 
+                        unoptimized
+                        className="absolute right-0 top-0 w-1/2 h-full object-cover object-left transition-opacity duration-300"
+                    />
+                    <div className="absolute right-0 top-0 w-1/2 h-full bg-linear-to-r from-white to-transparent"></div>
+                </div>
+
+                {/* Stats Box */}
+                <div className="flex-1 bg-zinc-900 rounded-[32px] overflow-hidden relative group min-h-[280px]">
+                    <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center z-10">
+                        <h4 className="text-4xl font-bold mb-1">100+</h4>
+                        <p className="text-xs uppercase tracking-widest opacity-70">Projects Delivered</p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Additional Card */}
+            <div className="bg-white rounded-[32px] p-10 shadow-sm border border-zinc-100 min-h-[200px]">
+                <h3 className="text-2xl font-black text-black mb-4">More Projects</h3>
+                <p className="text-gray-500 text-sm max-w-md mb-6">
+                    We're constantly working on exciting new projects across web development, AI integration, and IoT solutions.
+                </p>
+                <div className="flex gap-3">
+                    <span className="px-4 py-2 bg-gray-100 rounded-full text-xs font-medium text-gray-600">Web Apps</span>
+                    <span className="px-4 py-2 bg-gray-100 rounded-full text-xs font-medium text-gray-600">AI Bots</span>
+                    <span className="px-4 py-2 bg-gray-100 rounded-full text-xs font-medium text-gray-600">IoT</span>
+                </div>
+            </div>
+
+            {/* Logo Marquee */}
+            <LogoMarquee />
+
+        </div>
+    );
+}
