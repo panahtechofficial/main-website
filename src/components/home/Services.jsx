@@ -43,7 +43,7 @@ export default function Services() {
     return (
         <div ref={container} className="w-full min-h-screen flex flex-col items-center justify-center px-5 py-10 overflow-hidden">
             <div ref={headerRef} className="text-center max-w-2xl mb-10">
-                <h1 className="text-4xl font-[1000] leading-tight text-black mb-4">Our Services</h1>
+                <h1 className="text-4xl font-[1000] leading-tight text-black dark:text-white mb-4">Our Services</h1>
                 <p className="text-secondary font-normal text-xl">
                     Cutting-edge technology solutions tailored for your business needs. We build the digital future.
                 </p>

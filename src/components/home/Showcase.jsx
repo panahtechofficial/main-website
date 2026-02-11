@@ -67,7 +67,7 @@ export default function Showcase() {
         <div className="w-full flex flex-col gap-6">
             
             {/* Text Info Card */}
-            <div className="bg-white rounded-[32px] p-10 shadow-sm border border-gray-100">
+            <div className="bg-white dark:bg-zinc-900 rounded-[32px] p-10 shadow-sm border border-gray-100 dark:border-zinc-800 transition-colors duration-300">
                 <div className="flex items-center gap-2 mb-6">
                     <span className="relative flex size-2">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
@@ -76,7 +76,7 @@ export default function Showcase() {
                     <span className="text-primary font-bold uppercase text-xs tracking-wider">Showcase</span>
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white leading-tight mb-4">
                     PanahTech is building <br />
                     <span className="text-primary">the future</span>
                 </h2>
@@ -90,14 +90,16 @@ export default function Showcase() {
             {/* Project Preview Cards */}
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Project Info - Carousel */}
-                <div className="flex-2 bg-white rounded-[32px] p-10 shadow-sm border border-zinc-100 flex flex-col justify-between relative overflow-hidden group min-h-[280px]">
+                <div className="flex-2 bg-white dark:bg-zinc-900 rounded-[32px] p-10 shadow-sm border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between relative overflow-hidden group h-[500px] md:h-auto md:min-h-[280px] transition-colors duration-300">
                     {/* Slide Content */}
-                    <div ref={slideRef} className="z-10 relative">
-                        <h3 className="text-3xl font-black text-black mb-4">{currentProject.title}</h3>
+                    <div ref={slideRef} className="z-10 relative flex flex-col flex-1 justify-between pb-10 md:pb-0">
+                        <div>
+                            <h3 className="text-3xl font-black text-black dark:text-white mb-4 line-clamp-2">{currentProject.title}</h3>
 
-                        <p className="text-gray-500 text-sm mb-8 max-w-xs">
-                            {currentProject.description}
-                        </p>
+                            <p className="text-gray-500 dark:text-zinc-400 text-sm mb-8 max-w-xs line-clamp-3 md:line-clamp-none">
+                                {currentProject.description}
+                            </p>
+                        </div>
 
                         <a 
                             href={currentProject.link} 
@@ -118,7 +120,7 @@ export default function Showcase() {
                                 className={`relative w-2 h-2 rounded-full transition-all duration-300 ${
                                     index === currentIndex 
                                         ? 'bg-primary w-6' 
-                                        : 'bg-gray-300 hover:bg-gray-400'
+                                        : 'bg-gray-300 dark:bg-zinc-600 hover:bg-gray-400 dark:hover:bg-zinc-500'
                                 }`}
                                 aria-label={`Go to slide ${index + 1}`}
                             >
@@ -143,7 +145,7 @@ export default function Showcase() {
                         unoptimized
                         className="absolute right-0 top-0 w-1/2 h-full object-cover object-left transition-opacity duration-300"
                     />
-                    <div className="absolute right-0 top-0 w-1/2 h-full bg-linear-to-r from-white to-transparent"></div>
+                    <div className="absolute right-0 top-0 w-1/2 h-full bg-linear-to-r from-white dark:from-zinc-900 to-transparent"></div>
                 </div>
 
                 {/* Stats Box */}
@@ -157,15 +159,15 @@ export default function Showcase() {
             </div>
 
             {/* Additional Card */}
-            <div className="bg-white rounded-[32px] p-10 shadow-sm border border-zinc-100 min-h-[200px]">
-                <h3 className="text-2xl font-black text-black mb-4">More Projects</h3>
-                <p className="text-gray-500 text-sm max-w-md mb-6">
+            <div className="bg-white dark:bg-zinc-900 rounded-[32px] p-10 shadow-sm border border-zinc-100 dark:border-zinc-800 min-h-[200px] transition-colors duration-300">
+                <h3 className="text-2xl font-black text-black dark:text-white mb-4">More Projects</h3>
+                <p className="text-gray-500 dark:text-zinc-400 text-sm max-w-md mb-6">
                     We're constantly working on exciting new projects across web development, AI integration, and IoT solutions.
                 </p>
                 <div className="flex gap-3">
-                    <span className="px-4 py-2 bg-gray-100 rounded-full text-xs font-medium text-gray-600">Web Apps</span>
-                    <span className="px-4 py-2 bg-gray-100 rounded-full text-xs font-medium text-gray-600">AI Bots</span>
-                    <span className="px-4 py-2 bg-gray-100 rounded-full text-xs font-medium text-gray-600">IoT</span>
+                    <span className="px-4 py-2 bg-gray-100 dark:bg-zinc-950 rounded-full text-xs font-medium text-gray-600 dark:text-zinc-400">Web Apps</span>
+                    <span className="px-4 py-2 bg-gray-100 dark:bg-zinc-950 rounded-full text-xs font-medium text-gray-600 dark:text-zinc-400">AI Bots</span>
+                    <span className="px-4 py-2 bg-gray-100 dark:bg-zinc-950 rounded-full text-xs font-medium text-gray-600 dark:text-zinc-400">IoT</span>
                 </div>
             </div>
 

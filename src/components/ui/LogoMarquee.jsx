@@ -131,10 +131,10 @@ export default function LogoMarquee() {
   }, []);
 
   return (
-    <div className="w-full pt-10 border-t border-gray-200 overflow-hidden relative">
+    <div className="w-full pt-10 border-t border-gray-200 dark:border-zinc-800 overflow-hidden relative transition-colors duration-300">
       {/* fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-gray-50 dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-gray-50 dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
 
       {/* TOP MARQUEE */}
       <div
@@ -144,7 +144,7 @@ export default function LogoMarquee() {
         {topMarqueeBrands.map((Brand, idx) => (
           <div
             key={`top-${idx}`}
-            className="shrink-0 flex items-center justify-center opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-110 cursor-pointer"
+            className="shrink-0 flex items-center justify-center opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-110 cursor-pointer dark:opacity-40 dark:hover:opacity-100"
           >
             <Brand className="w-6 h-6 md:w-8 md:h-8" />
           </div>
@@ -159,7 +159,7 @@ export default function LogoMarquee() {
         {bottomMarqueeBrands.map((Brand, idx) => (
           <div
             key={`bottom-${idx}`}
-            className="shrink-0 flex items-center justify-center opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-110 cursor-pointer"
+            className="shrink-0 flex items-center justify-center opacity-30 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-110 cursor-pointer dark:opacity-40 dark:hover:opacity-100"
           >
             <Brand className="w-6 h-6 md:w-8 md:h-8" />
           </div>

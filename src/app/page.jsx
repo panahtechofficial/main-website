@@ -5,10 +5,13 @@ import Showcase from "@/components/home/Showcase";
 import CTA from "@/components/home/CTA";
 import ChatRoom from "@/components/home/ChatRoom";
 import FloatingChatButton from "@/components/ui/FloatingChatButton";
+import FloatingModel3D from "@/components/ui/FloatingModel3D";
+import DarkModeToggle from "@/components/ui/DarkModeToggle";
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 flex flex-col min-h-screen font-sans">
+    <div className="bg-gray-50 dark:bg-transparent flex flex-col min-h-screen font-sans transition-colors duration-300">
+      <DarkModeToggle />
       <Hero />
       <Features />
       <Services />
@@ -33,6 +36,13 @@ export default function Home() {
       
       {/* Floating Chat Button */}
       <FloatingChatButton />
+
+      {/* Floating 3D Model - Desktop only, positioned to not block content */}
+      <div className="hidden lg:block">
+        <FloatingModel3D 
+          position={{ top: "60%", right: "-2%" }}
+        />
+      </div>
     </div>
   );
 }

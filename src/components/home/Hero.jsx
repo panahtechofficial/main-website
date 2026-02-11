@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import FloatingLines from "../FloatingLines";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -15,6 +16,7 @@ export default function Hero() {
     const containerRef = useRef(null);
     const contentRef = useRef(null);
     const cardsRef = useRef(null);
+    const linesRef = useRef(null);
 
     useGSAP(() => {
         const tl = gsap.timeline({
@@ -34,6 +36,14 @@ export default function Hero() {
             duration: 1
         }, 0);
 
+        // 2. Floating Lines also fade out
+        if (linesRef.current) {
+            tl.to(linesRef.current, {
+                opacity: 0,
+                duration: 1
+            }, 0);
+        }
+
         const cards = cardsRef.current.children;
 
         tl.to(cards[0], { x: -100, y: -100, opacity: 0, rotation: -20 }, 0);
@@ -47,10 +57,10 @@ export default function Hero() {
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className="w-full h-screen flex flex-col items-center justify-center relativ overflow-hidden">
+        <div ref={containerRef} className="w-full h-screen flex flex-col items-center justify-center relative overflow-hidden">
             <div ref={contentRef} className="flex flex-col items-center z-10">
                 <Image src="/logo-panahtech.webp" alt="Hero" width={269} height={269} priority />
-                <div className="text-3xl md:text-4xl sm:px-3 text-black font-[1000] text-center mt-7">
+                <div className="text-3xl md:text-4xl sm:px-3 text-black dark:text-white font-[1000] text-center mt-7">
                     <h1>Turning Problem Into</h1>
                     <h1 className="text-primary mt-2">Solutions</h1>
                     <p className="text-secondary font-normal text-sm md:text-lg mt-7">We transform complex challenges into <br /> seamless Web, AI, and IoT integrations.</p>
@@ -78,7 +88,19 @@ export default function Hero() {
                 <DateCard className="absolute cursor-pointer md:scale-150 md:bottom-[20%] md:right-[5%] scale-90 -rotate-12 bottom-[15%] right-[2%]" />
             </div>
 
-            {/* Floating Lines Background */}
+            {/* Floating Lines Background - Absolute & Behind Content */}
+            <div ref={linesRef} className="absolute inset-0 w-full h-full -z-10 opacity-50 dark:opacity-30 hidden dark:block">
+                <FloatingLines
+                    linesGradient={["#d73904", "#e35d31"]}
+                    animationSpeed={1.0}
+                    interactive={true}
+                    bendRadius={5}
+                    bendStrength={-0.5}
+                    mouseDamping={0.05}
+                    parallax={true}
+                    parallaxStrength={0.5}
+                />
+            </div>
         </div>
     );
 }

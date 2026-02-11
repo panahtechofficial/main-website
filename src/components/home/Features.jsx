@@ -54,11 +54,11 @@ export default function Features() {
 
     return (
         <div ref={container} className="w-full px-2 h-screen flex flex-col items-center justify-center">
-            <h1 ref={title} className="text-2xl md:text-4xl bg-linear-to-b from-primary to-[#F1F1F1] bg-clip-text text-transparent font-[1000] text-center leading-tight">
+            <h1 ref={title} className="text-2xl md:text-4xl bg-linear-to-b from-primary to-[#F1F1F1] dark:to-[#444] bg-clip-text text-transparent font-[1000] text-center leading-tight">
                 Faster Loading. Real-time<br />Tracking. Scalable Code.<br />Modern UI. Secure Data.
             </h1>
 
-            <p ref={textRef} className="text-gray-300 font-normal text-md md:text-xl mt-7 text-center">
+            <p ref={textRef} className="text-gray-300 dark:text-zinc-700 font-normal text-md md:text-xl mt-7 text-center">
                 {splitText("High-performance engineering that turns")} <br />
                 {splitText("complex problems into elegant solutions.")}
             </p>
