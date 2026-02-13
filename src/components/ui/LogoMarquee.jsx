@@ -13,7 +13,6 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Split brands into two different sets for top and bottom rows
 const topBrands = [
   SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs, SiMongodb,
   SiPostgresql, SiDocker, SiFigma, SiVercel, SiFirebase, SiBlender
@@ -24,7 +23,6 @@ const bottomBrands = [
   SiHtml5, SiCss3, SiBootstrap, SiExpress, SiMysql, SiGooglecloud
 ];
 
-// Duplicate each for seamless infinite loop
 const topMarqueeBrands = [...topBrands, ...topBrands];
 const bottomMarqueeBrands = [...bottomBrands, ...bottomBrands];
 
@@ -33,14 +31,17 @@ export default function LogoMarquee() {
   const bottomRowRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const topRow = topRowRef.current;
-      const bottomRow = bottomRowRef.current;
+    const topRow = topRowRef.current;
+    const bottomRow = bottomRowRef.current;
+    
+    let resetTimeout;
+    let isHovering = false; // 🆕 Track hover state
 
+    const ctx = gsap.context(() => {
       const topWidth = topRow.scrollWidth / 2;
       const bottomWidth = bottomRow.scrollWidth / 2;
 
-      // 🔁 marquee timelines
+      // 🔁 Main marquee timelines
       const topTl = gsap.to(topRow, {
         x: -topWidth,
         duration: 25,
@@ -59,52 +60,82 @@ export default function LogoMarquee() {
         }
       );
 
-      // 🖱️ Hover pause - TOP
-      topRow.addEventListener("mouseenter", () => {
-        gsap.to(topTl, { timeScale: 0, duration: 0.3 });
-      });
+      // 🖱️ Hover handlers
+      const handleTopEnter = () => {
+        isHovering = true;
+        gsap.to(topTl, { 
+          timeScale: 0, 
+          duration: 0.3,
+          overwrite: 'auto' // 🆕 Prevent conflicts
+        });
+      };
 
-      topRow.addEventListener("mouseleave", () => {
-        gsap.to(topTl, { timeScale: 1, duration: 0.6, ease: "power3.out" });
-      });
+      const handleTopLeave = () => {
+        isHovering = false;
+        gsap.to(topTl, { 
+          timeScale: 1, 
+          duration: 0.6, 
+          ease: "power3.out",
+          overwrite: 'auto' // 🆕 Prevent conflicts
+        });
+      };
 
-      // 🖱️ Hover pause - BOTTOM
-      bottomRow.addEventListener("mouseenter", () => {
-        gsap.to(bottomTl, { timeScale: 0, duration: 0.3 });
-      });
+      const handleBottomEnter = () => {
+        isHovering = true;
+        gsap.to(bottomTl, { 
+          timeScale: 0, 
+          duration: 0.3,
+          overwrite: 'auto' // 🆕 Prevent conflicts
+        });
+      };
 
-      bottomRow.addEventListener("mouseleave", () => {
-        gsap.to(bottomTl, { timeScale: 1, duration: 0.6, ease: "power3.out" });
-      });
+      const handleBottomLeave = () => {
+        isHovering = false;
+        gsap.to(bottomTl, { 
+          timeScale: 1, 
+          duration: 0.6, 
+          ease: "power3.out",
+          overwrite: 'auto' // 🆕 Prevent conflicts
+        });
+      };
 
+      topRow.addEventListener("mouseenter", handleTopEnter);
+      topRow.addEventListener("mouseleave", handleTopLeave);
+      bottomRow.addEventListener("mouseenter", handleBottomEnter);
+      bottomRow.addEventListener("mouseleave", handleBottomLeave);
 
-      let resetTimeout;
-
-      ScrollTrigger.create({
+      // 🖱️ Scroll-based scratch effect
+      const scrollTrigger = ScrollTrigger.create({
         start: 0,
         end: "max",
         onUpdate(self) {
+          // 🆕 Don't apply scroll effect when hovering
+          if (isHovering) return;
+
           const velocity = self.getVelocity();
           const dir = velocity > 0 ? -1 : 1;
 
           if (Math.abs(velocity) > 120) {
-            // 🧨 SCRATCH EFFECT
+            // Apply scratch effect
             gsap.to(topTl, {
               timeScale: dir * 2.2,
               duration: 0.15,
               ease: "power3.out",
+              overwrite: 'auto' // 🆕 Prevent conflicts
             });
 
             gsap.to(bottomTl, {
               timeScale: dir * -2.2,
               duration: 0.15,
               ease: "power3.out",
+              overwrite: 'auto' // 🆕 Prevent conflicts
             });
 
-            // skew for extra scratch feeling
+            // Skew effect
             gsap.to([topRow, bottomRow], {
               skewX: dir * 4,
               duration: 0.15,
+              overwrite: 'auto' // 🆕 Prevent conflicts
             });
 
             clearTimeout(resetTimeout);
@@ -114,25 +145,40 @@ export default function LogoMarquee() {
                 timeScale: 1,
                 duration: 0.6,
                 ease: "power4.out",
+                overwrite: 'auto' // 🆕 Prevent conflicts
               });
 
               gsap.to([topRow, bottomRow], {
                 skewX: 0,
                 duration: 0.6,
                 ease: "power4.out",
+                overwrite: 'auto' // 🆕 Prevent conflicts
               });
             }, 120);
           }
         },
       });
+
+      // 🆕 Cleanup function
+      return () => {
+        topRow.removeEventListener("mouseenter", handleTopEnter);
+        topRow.removeEventListener("mouseleave", handleTopLeave);
+        bottomRow.removeEventListener("mouseenter", handleBottomEnter);
+        bottomRow.removeEventListener("mouseleave", handleBottomLeave);
+        scrollTrigger.kill();
+        clearTimeout(resetTimeout);
+      };
     });
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      clearTimeout(resetTimeout); // 🆕 Extra safety
+    };
   }, []);
 
   return (
     <div className="w-full pt-10 border-t border-gray-200 dark:border-zinc-800 overflow-hidden relative transition-colors duration-300">
-      {/* fade edges */}
+      {/* Fade edges */}
       <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-gray-50 dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-gray-50 dark:from-zinc-950 to-transparent z-10 pointer-events-none" />
 

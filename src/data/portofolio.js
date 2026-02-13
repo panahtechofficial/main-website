@@ -13,4 +13,11 @@ export const portofolio = [
         image: "https://placehold.co/600x400",
         link: "https://irsyanramadhan.my.id",
     },
+    {
+        id: 3,
+        title: "VR pres machine simulation",
+        description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        image: "/portofolio/vr-pres-machine-simulation.webp",
+        link: "",
+    }
 ];

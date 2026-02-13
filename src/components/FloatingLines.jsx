@@ -277,12 +277,30 @@ export default function FloatingLines({
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Skip on mobile devices to avoid WebGL context loss
+    if (window.innerWidth < 768) return;
+
     const scene = new Scene();
 
     const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     camera.position.z = 1;
 
-    const renderer = new WebGLRenderer({ antialias: true, alpha: false });
+    let renderer;
+    try {
+      renderer = new WebGLRenderer({ antialias: true, alpha: false });
+    } catch (e) {
+      console.warn('FloatingLines: WebGL not available, skipping render.', e);
+      return;
+    }
+
+    // Check if context was actually created
+    const gl = renderer.getContext();
+    if (!gl) {
+      console.warn('FloatingLines: WebGL context is null, skipping render.');
+      renderer.dispose();
+      return;
+    }
+
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.domElement.style.width = '100%';
     renderer.domElement.style.height = '100%';

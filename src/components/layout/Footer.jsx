@@ -1,4 +1,6 @@
 // src/components/layout/Footer.jsx
+import Image from "next/image";
+
 export default function Footer() {
     return (
         <footer className="bg-white dark:bg-zinc-950 border-t border-gray-100 dark:border-zinc-800 transition-colors duration-300">
@@ -7,10 +9,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="space-y-4">
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                                <span className="text-white font-bold text-lg">P</span>
-                            </div>
-                            <span className="text-xl font-bold text-black dark:text-white">PanahTech</span>
+                            <Image src="/logo-panahtech.webp" alt="Logo" width={100} height={100} />
                         </div>
                         <p className="text-gray-500 dark:text-zinc-400 text-sm">
                             Building the future with cutting-edge technology solutions.

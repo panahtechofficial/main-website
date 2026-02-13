@@ -33,14 +33,14 @@ export default function Hero() {
         // 1. Hero Content (Text & Logo) fades out WITHOUT moving up
         tl.to(contentRef.current, {
             opacity: 0,
-            duration: 1
+            duration: 0.5
         }, 0);
 
         // 2. Floating Lines also fade out
         if (linesRef.current) {
             tl.to(linesRef.current, {
                 opacity: 0,
-                duration: 1
+                duration: 0.5
             }, 0);
         }
 
@@ -68,7 +68,7 @@ export default function Hero() {
                 <button 
                     onClick={() => {
                         gsap.to(window, {
-                            scrollTo: { y: window.innerHeight, autoKill: false },
+                            scrollTo: { y: window.innerHeight-100, autoKill: false },
                             duration: 1.5,
                             ease: "expo.in"
                         });
@@ -88,8 +88,8 @@ export default function Hero() {
                 <DateCard className="absolute cursor-pointer md:scale-150 md:bottom-[20%] md:right-[5%] scale-90 -rotate-12 bottom-[15%] right-[2%]" />
             </div>
 
-            {/* Floating Lines Background - Absolute & Behind Content */}
-            <div ref={linesRef} className="absolute inset-0 w-full h-full -z-10 opacity-50 dark:opacity-30 hidden dark:block">
+            {/* Floating Lines Background - Absolute & Behind Content (desktop dark mode only) */}
+            <div ref={linesRef} className="absolute inset-0 w-full h-full -z-10 opacity-50 dark:opacity-30 hidden md:dark:block">
                 <FloatingLines
                     linesGradient={["#d73904", "#e35d31"]}
                     animationSpeed={1.0}

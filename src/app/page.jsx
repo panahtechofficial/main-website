@@ -15,7 +15,6 @@ export default function Home() {
       <Hero />
       <Features />
       <Services />
-      
       {/* Showcase + CTA with Sticky ChatRoom Sidebar */}
       <div className="px-4">
         <div className="max-w-[1400px] mx-auto ">

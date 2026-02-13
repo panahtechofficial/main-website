@@ -33,12 +33,12 @@ export default function Features() {
         gsap.to(chars, {
             scrollTrigger: {
                 trigger: textRef.current,
-                start: "top 80%",
-                end: "bottom 60%",
+                start: "top bottom", // Start immediately when it enters viewport
+                end: "top 60%",      // Finish by the time it reaches 60% of viewport
                 scrub: 1,
             },
             color: "var(--color-secondary)", // Transition to secondary color
-            stagger: 0.1,     // Stagger effect for one-by-one change
+            stagger: 0.02,     // 0.02s stagger for faster ripple effect
         });
 
     }, { scope: container });
@@ -53,7 +53,7 @@ export default function Features() {
     };
 
     return (
-        <div ref={container} className="w-full px-2 h-screen flex flex-col items-center justify-center">
+        <div ref={container} className="w-full px-2 h-screen flex flex-col items-center justify-center -mt-[10vh] md:-mt-[20vh] relative z-20">
             <h1 ref={title} className="text-2xl md:text-4xl bg-linear-to-b from-primary to-[#F1F1F1] dark:to-[#444] bg-clip-text text-transparent font-[1000] text-center leading-tight">
                 Faster Loading. Real-time<br />Tracking. Scalable Code.<br />Modern UI. Secure Data.
             </h1>
