@@ -11,7 +11,7 @@ import DarkModeToggle from "@/components/ui/DarkModeToggle";
 export default function Home() {
   return (
     <div className="bg-gray-50 dark:bg-transparent flex flex-col min-h-screen font-sans transition-colors duration-300">
-      <DarkModeToggle />
+      {/* DarkModeToggle moved to Navbar */}
       <Hero />
       <Features />
       <Services />

@@ -42,9 +42,9 @@ export default function Footer() {
                     <div>
                         <h4 className="font-bold text-black dark:text-white mb-4">Contact</h4>
                         <ul className="space-y-2 text-sm">
-                            <li className="text-gray-500 dark:text-zinc-400">[EMAIL_ADDRESS]</li>
-                            <li className="text-gray-500 dark:text-zinc-400">+123 456 7890</li>
-                            <li className="text-gray-500 dark:text-zinc-400">123 Tech Park, Silicon Valley</li>
+                            <li className="text-gray-500 dark:text-zinc-400">admin@panahtech.com</li>
+                            <li className="text-gray-500 dark:text-zinc-400">+62 882 1471 7802</li>
+                            <li className="text-gray-500 dark:text-zinc-400">Jl. Cipinang Muara III. RT 008/04 No.44 Kec. Duren Sawit, Kel. Klender,  Jakarta Timur, DKI Jakarta 13470</li>
                         </ul>
                     </div>
                 </div>

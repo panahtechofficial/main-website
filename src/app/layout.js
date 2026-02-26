@@ -1,6 +1,6 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-// import Navbar from "@/components/layout/Navbar";
+import Navbar from "@/components/layout/Navbar"; // Now imported
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 
@@ -44,8 +44,9 @@ export default function RootLayout({ children }) {
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider>
-          {children}
           {/* <Navbar /> */}
+          {children}
+          {/* <Footer /> kept as is, but Navbar added */}
           <Footer />
         </ThemeProvider>
       </body>
