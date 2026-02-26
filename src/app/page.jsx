@@ -6,12 +6,10 @@ import CTA from "@/components/home/CTA";
 import ChatRoom from "@/components/home/ChatRoom";
 import FloatingChatButton from "@/components/ui/FloatingChatButton";
 import FloatingModel3D from "@/components/ui/FloatingModel3D";
-import DarkModeToggle from "@/components/ui/DarkModeToggle";
 
 export default function Home() {
   return (
     <div className="bg-gray-50 dark:bg-transparent flex flex-col min-h-screen font-sans transition-colors duration-300">
-      {/* DarkModeToggle moved to Navbar */}
       <Hero />
       <Features />
       <Services />
