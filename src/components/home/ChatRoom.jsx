@@ -322,7 +322,7 @@ export default function ChatRoom() {
         )}
 
         <div className="p-4 border-t border-white/10">
-          <div className="flex items-end gap-2 bg-white/10 rounded-full px-4 py-2">
+          <div className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2">
             <textarea
               ref={inputRef}
               value={inputValue}

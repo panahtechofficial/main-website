@@ -106,7 +106,7 @@ export default function ContactPage() {
                   Jakarta Timur, DKI Jakarta
                 </p>
               </div>
-              <div className="[&>#chatroom-section]:!relative [&>#chatroom-section]:!top-0 [&>#chatroom-section]:!h-auto">
+              <div className="[&>#chatroom-section]:relative! [&>#chatroom-section]:top-0! [&>#chatroom-section]:h-auto!">
                 <ChatRoom />
               </div>
             </div>
