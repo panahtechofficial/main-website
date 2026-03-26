@@ -4,7 +4,7 @@ export const portofolio = [
         title: "BORBORÉ.id",
         description: "A premium coffee delivery platform with real-time tracking and subscription management.",
         image: "/portofolio/borbore.webp",
-        link: "https://borbore.id",
+        link: "https://borboreofficial.id",
     },
     {
         id: 2,
