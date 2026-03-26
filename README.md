@@ -24,7 +24,7 @@ This website is designed as both a landing page and a service catalog for PanahT
 
 ### AI Chatbot
 
-* Responds in the user's language (Indonesian / English)
+* Responds in the user's language
 * Maintains chat context per session
 * Displays a WhatsApp follow-up button when user requirements are clearly identified
 
