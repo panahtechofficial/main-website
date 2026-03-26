@@ -81,10 +81,10 @@ export default function Hero() {
             </div>
 
             <div ref={cardsRef} className="absolute top-0 left-0 w-full h-full">
-                <GithubCard className="absolute cursor-pointer md:scale-150 md:top-[10%] md:left-[7%] scale-90 -rotate-6 top-[3%] left-[3%]" />
-                <CoffeeCard className="absolute cursor-pointer md:scale-150 md:top-[45%] md:left-[8%] scale-90 rotate-10 top-[15%] -left-7" />
+                <GithubCard className="absolute cursor-pointer md:scale-150 md:top-[15%] md:left-[7%] scale-90 -rotate-6 top-[3%] left-[3%]" />
+                <CoffeeCard className="absolute cursor-pointer md:scale-150 md:top-[40%] md:left-[8%] scale-90 rotate-10 top-[15%] -left-7" />
                 <CodeCard className="absolute cursor-pointer md:scale-150 md:bottom-[15%] md:left-[5%] scale-80 -rotate-3 bottom-[15%] left-[3%]" />
-                <TempCard className="absolute cursor-pointer md:scale-150 md:top-[12%] md:right-[5%] scale-70 rotate-6 top-[9%] right-[2%]" />
+                <TempCard className="absolute cursor-pointer md:scale-150 md:top-[17%] md:right-[5%] scale-70 rotate-6 top-[9%] right-[2%]" />
                 <DateCard className="absolute cursor-pointer md:scale-150 md:bottom-[20%] md:right-[5%] scale-90 -rotate-12 bottom-[15%] right-[2%]" />
             </div>
 

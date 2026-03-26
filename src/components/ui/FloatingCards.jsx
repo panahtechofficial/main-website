@@ -26,7 +26,7 @@ export function GithubCard({ className = "" }) {
 
 export function CodeCard({ className = "" }) {
     return (
-        <div className={`bg-white dark:bg-zinc-900 p-4 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-800 w-max min-w-[200px] transition-colors duration-300 ${className}`}>
+        <div className={`bg-white dark:bg-zinc-900 p-4 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-800 w-max min-w-50 transition-colors duration-300 ${className}`}>
             <div className="flex gap-1.5 mb-3">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
@@ -137,7 +137,7 @@ export function DateCard({ className = "" }) {
 
     return (
         <div className={`bg-white dark:bg-zinc-900 px-5 py-3 rounded-3xl shadow-lg border border-zinc-100 dark:border-zinc-800 w-max transition-colors duration-300 ${className}`}>
-            <div className="flex items-start mr-[100px] gap-2">
+            <div className="flex items-start mr-25 gap-2">
                 <div className="flex items-center gap-2 p-1.5 rounded text-green-600 dark:text-green-400">
                     <span className="relative flex size-2">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
@@ -150,11 +150,11 @@ export function DateCard({ className = "" }) {
             {!mounted || !dateTime ? (
                 <>
                     {/* Skeleton for dayName */}
-                    <div className="h-[28px] flex items-center">
+                    <div className="h-7 flex items-center">
                         <div className="h-5 w-24 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse"></div>
                     </div>
                     {/* Skeleton for dateString */}
-                    <div className="h-[15px] flex items-center">
+                    <div className="h-3.75 flex items-center">
                         <div className="h-3 w-32 bg-zinc-100 dark:bg-zinc-950 rounded animate-pulse"></div>
                     </div>
                 </>
