@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PanahTech Website
 
-## Getting Started
+An interactive company profile website for **PanahTech**, showcasing digital services (Web, AI, VR, IoT), project portfolio, contact page, and an AI chatbot for initial project consultation.
 
-First, run the development server:
+## About This Website
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This website is designed as both a landing page and a service catalog for PanahTech, with a focus on:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Modern and responsive brand presentation
+* Clear service categorization with detailed service pages
+* Project portfolio showcase
+* Contact form and consultation chat
+* AI chatbot integration powered by Gemini
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Interactive Homepage** with hero section, features, services, showcase, and call-to-action
+* **Services Pages**:
 
-## Learn More
+  * `/services`
+  * `/services/[slug]`
+* **Portfolio Page**: `/portfolio`
+* **Contact Page**: `/contact`
 
-To learn more about Next.js, take a look at the following resources:
+### AI Chatbot
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Responds in the user's language (Indonesian / English)
+* Maintains chat context per session
+* Displays a WhatsApp follow-up button when user requirements are clearly identified
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Next.js (App Router)
+* React
+* Tailwind CSS
+* GSAP
+* Gemini API (Google Generative Language API)

@@ -5,7 +5,7 @@ export default function ServiceCard({ service, className = "" }) {
 
     return (
         <div
-            className={`relative bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-800 overflow-hidden group hover:scale-[1.01] hover:shadow-md hover:rotate-1 hover:cursor-pointer transition-all duration-300 flex flex-col justify-between h-full min-h-[320px] ${className}`}
+            className={`relative bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-800 overflow-hidden group hover:scale-[1.01] hover:shadow-md hover:rotate-1 hover:cursor-pointer transition-all duration-300 flex flex-col justify-between h-full min-h-80 ${className}`}
         >
             <div className="flex justify-between items-start w-full relative z-10">
                 <div className={`w-14 h-14 rounded-lg flex items-center justify-center ${service.color}`}>

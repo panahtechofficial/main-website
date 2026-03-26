@@ -67,7 +67,7 @@ export default function Showcase() {
         <div className="w-full flex flex-col gap-6">
             
             {/* Text Info Card */}
-            <div className="bg-white dark:bg-zinc-900 rounded-[32px] p-10 shadow-sm border border-gray-100 dark:border-zinc-800 transition-colors duration-300">
+            <div className="bg-white dark:bg-zinc-900 rounded-4xl p-10 shadow-sm border border-gray-100 dark:border-zinc-800 transition-colors duration-300">
                 <div className="flex items-center gap-2 mb-6">
                     <span className="relative flex size-2">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
@@ -90,7 +90,7 @@ export default function Showcase() {
             {/* Project Preview Cards */}
             <div className="flex flex-col md:flex-row gap-6">
                 {/* Project Info - Carousel */}
-                <div className="flex-2 bg-white dark:bg-zinc-900 rounded-[32px] p-10 shadow-sm border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between relative overflow-hidden group h-[500px] md:h-auto md:min-h-[280px] transition-colors duration-300">
+                <div className="flex-2 bg-white dark:bg-zinc-900 rounded-4xl p-10 shadow-sm border border-zinc-100 dark:border-zinc-800 flex flex-col justify-between relative overflow-hidden group h-125 md:h-auto md:min-h-70 transition-colors duration-300">
                     {/* Slide Content */}
                     <div ref={slideRef} className="z-10 relative flex flex-col flex-1 justify-between pb-10 md:pb-0">
                         <div>
@@ -149,7 +149,7 @@ export default function Showcase() {
                 </div>
 
                 {/* Stats Box */}
-                <div className="flex-1 bg-zinc-900 rounded-[32px] overflow-hidden relative group min-h-[280px]">
+                <div className="flex-1 bg-zinc-900 rounded-4xl overflow-hidden relative group min-h-70">
                     <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center z-10">
                         <h4 className="text-4xl font-bold mb-1">100+</h4>
@@ -159,7 +159,7 @@ export default function Showcase() {
             </div>
 
             {/* Additional Card */}
-            <div className="bg-white dark:bg-zinc-900 rounded-[32px] p-10 shadow-sm border border-zinc-100 dark:border-zinc-800 min-h-[200px] transition-colors duration-300">
+            <div className="bg-white dark:bg-zinc-900 rounded-4xl p-10 shadow-sm border border-zinc-100 dark:border-zinc-800 min-h-50 transition-colors duration-300">
                 <h3 className="text-2xl font-black text-black dark:text-white mb-4">More Projects</h3>
                 <p className="text-gray-500 dark:text-zinc-400 text-sm max-w-md mb-6">
                     We're constantly working on exciting new projects across web development, AI integration, and IoT solutions.

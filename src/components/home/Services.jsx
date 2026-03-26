@@ -49,7 +49,7 @@ export default function Services() {
                 </p>
             </div>
 
-            <div ref={gridRef} className="hidden lg:flex w-full max-w-[1400px] h-[500px] gap-4">
+            <div ref={gridRef} className="hidden lg:flex w-full max-w-350 h-125 gap-4">
                 {/* Column 1: Profile (Large) & Chatbot (Small) */}
                 <div className="flex flex-col gap-4 flex-1 h-full">
                     <ServiceCard service={servicesData[0]} className="flex-2 min-h-0!" />

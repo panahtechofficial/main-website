@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 
 export default function ShowcaseCard() {
     return (
-        <div className="w-full lg:w-[350px] h-[500px] lg:h-[550px] sticky top-6 rounded-[32px] overflow-hidden shadow-xl group">
+        <div className="w-full lg:w-87.5 h-125 lg:h-137.5 sticky top-6 rounded-4xl overflow-hidden shadow-xl group">
             <Image
                 src="/showcase.webp"
                 alt="PanahTech Showcase"
