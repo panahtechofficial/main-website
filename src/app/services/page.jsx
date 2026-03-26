@@ -35,14 +35,14 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch">
             {servicesData.map((service) => (
-              <div key={service.title} className="group">
-                <ServiceCard service={service} />
+              <div key={service.title} className="group h-full flex flex-col">
+                <ServiceCard service={service} className="flex-1 min-h-80" />
                 <div className="mt-4">
                   <Link
                     href={`/services/${toSlug(service.title)}`}
-                    className="inline-flex items-center gap-2 bg-primary text-white text-xs font-semibold px-4 py-2 rounded-full shadow-md hover:bg-orange-600 transition-colors"
+                    className="inline-flex w-full items-center justify-center gap-2 bg-primary text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-md hover:bg-orange-600 transition-colors"
                   >
                     Lihat detail layanan
                   </Link>

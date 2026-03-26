@@ -13,11 +13,13 @@ export default function ChatRoom() {
   const [inputValue, setInputValue] = useState("");
   const [sessionId, setSessionId] = useState("");
   const [isHydrated, setIsHydrated] = useState(false);
+  const [isResetArmed, setIsResetArmed] = useState(false);
 
-  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
   const welcomeRef = useRef(null);
   const inputRef = useRef(null);
   const messagesRef = useRef([]);
+  const resetTimerRef = useRef(null);
 
   const STORAGE_KEY_MESSAGES = "panahtech-chat-messages";
   const STORAGE_KEY_SESSION = "panahtech-chat-session-id";
@@ -50,6 +52,28 @@ export default function ChatRoom() {
     sessionStorage.setItem(STORAGE_KEY_MESSAGES, JSON.stringify(messages));
     messagesRef.current = messages;
   }, [messages, isHydrated]);
+
+  useEffect(() => {
+    if (!messagesContainerRef.current) return;
+    messagesContainerRef.current.scrollTo({
+      top: messagesContainerRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [messages, isTyping]);
+
+  useEffect(() => {
+    if (messages.length === 0) {
+      setIsResetArmed(false);
+    }
+  }, [messages.length]);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) {
+        clearTimeout(resetTimerRef.current);
+      }
+    };
+  }, []);
 
   const requestAIResponse = async (history) => {
     const response = await fetch("/api/chat", {
@@ -146,10 +170,6 @@ export default function ChatRoom() {
     };
   }, [isTyping, sessionId]);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping]);
-
   const handleSend = async () => {
     if (!inputValue.trim()) return;
     const currentInput = inputValue;
@@ -162,6 +182,52 @@ export default function ChatRoom() {
       e.preventDefault();
       handleSend();
     }
+  };
+
+  const performResetChat = () => {
+    const newSessionId = crypto.randomUUID();
+
+    setMessages([]);
+    messagesRef.current = [];
+    setInputValue("");
+    setIsTyping(false);
+    setSessionId(newSessionId);
+    setIsResetArmed(false);
+
+    sessionStorage.removeItem(STORAGE_KEY_MESSAGES);
+    sessionStorage.setItem(STORAGE_KEY_SESSION, newSessionId);
+
+    if (welcomeRef.current) {
+      gsap.to(welcomeRef.current, {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
+  };
+
+  const handleResetChat = () => {
+    if (!isResetArmed) {
+      setIsResetArmed(true);
+
+      if (resetTimerRef.current) {
+        clearTimeout(resetTimerRef.current);
+      }
+
+      resetTimerRef.current = setTimeout(() => {
+        setIsResetArmed(false);
+      }, 4000);
+      return;
+    }
+
+    if (resetTimerRef.current) {
+      clearTimeout(resetTimerRef.current);
+      resetTimerRef.current = null;
+    }
+
+    performResetChat();
   };
 
   const renderMessageContent = (text) => {
@@ -207,6 +273,18 @@ export default function ChatRoom() {
           className="object-cover object-right opacity-20"
         />
         <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/55 to-zinc-900/40"></div>
+        {messages.length > 0 && (
+          <button
+            onClick={handleResetChat}
+            className={`absolute z-40 top-4 right-4 hover:cursor-pointer text-white text-xs px-3 py-1 rounded-full transition-colors ${
+              isResetArmed
+                ? "bg-red-600 hover:bg-red-700"
+                : "bg-primary hover:bg-orange-600"
+            }`}
+          >
+            {isResetArmed ? "✓ Hapus chat" : "Reset chat"}
+          </button>
+        )}
       </div>
 
       <div className="relative z-10 flex flex-col h-full">
@@ -252,7 +330,10 @@ export default function ChatRoom() {
         </div>
 
         {messages.length > 0 && (
-          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4 scrollbar-thin">
+          <div
+            ref={messagesContainerRef}
+            className="flex-1 overflow-y-auto px-6 py-4 space-y-4 scrollbar-thin"
+          >
             {messages.map((msg, idx) => (
               <div
                 key={idx}
@@ -316,8 +397,6 @@ export default function ChatRoom() {
                 </div>
               </div>
             )}
-
-            <div ref={messagesEndRef} />
           </div>
         )}
 

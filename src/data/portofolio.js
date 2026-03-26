@@ -16,7 +16,7 @@ export const portofolio = [
     {
         id: 3,
         title: "VR pres machine simulation",
-        description: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        description: "A virtual reality simulation for a press machine, designed for training and safety demonstrations in industrial settings.",
         image: "/portofolio/vr-pres-machine-simulation.webp",
         link: "",
     }

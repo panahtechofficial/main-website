@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
-import { servicesData } from "@/data/services";
+import { servicesData, serviceDetails } from "@/data/services";
+import { ChevronLeft } from "lucide-react";
 
 const toSlug = (title) =>
   title
@@ -10,64 +11,20 @@ const toSlug = (title) =>
     .trim()
     .replace(/\s+/g, "-");
 
-const detailContent = {
-  "company-profile": {
-    highlight: "Brand authority & trust",
-    outcomes: [
-      "Website cepat & SEO-ready",
-      "Konsisten dengan identity brand",
-      "Mudah di-maintain tim internal",
-    ],
-  },
-  "online-catalogue": {
-    highlight: "Digital product experience",
-    outcomes: [
-      "Navigasi produk lebih efisien",
-      "Struktur katalog scalable",
-      "Konversi lead lebih tinggi",
-    ],
-  },
-  "school-website": {
-    highlight: "Educational platform",
-    outcomes: [
-      "Informasi akademik terpusat",
-      "Akses mudah untuk siswa & orang tua",
-      "UI modern dan ramah mobile",
-    ],
-  },
-  "ai-chatbot": {
-    highlight: "Automated customer support",
-    outcomes: [
-      "Respon pelanggan 24/7",
-      "Efisiensi operasional CS",
-      "Knowledge base yang terus belajar",
-    ],
-  },
-  "vr-development": {
-    highlight: "Immersive interactions",
-    outcomes: [
-      "Training experience lebih engaging",
-      "Demo produk interaktif",
-      "Value innovation lebih kuat",
-    ],
-  },
-  "iot-solutions": {
-    highlight: "Connected ecosystem",
-    outcomes: [
-      "Monitoring real-time",
-      "Automasi berbasis data",
-      "Integrasi perangkat yang fleksibel",
-    ],
-  },
-};
+const getServiceDetailBySlug = (slug) =>
+  serviceDetails.find((item) => toSlug(item.title) === slug);
+
+const getServiceVisualByTitle = (title) =>
+  servicesData.find((item) => item.title === title);
 
 export async function generateStaticParams() {
-  return servicesData.map((service) => ({ slug: toSlug(service.title) }));
+  return serviceDetails.map((service) => ({ slug: toSlug(service.title) }));
 }
 
 export async function generateMetadata({ params }) {
-  const slug = params.slug;
-  const service = servicesData.find((item) => toSlug(item.title) === slug);
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
+  const service = getServiceDetailBySlug(slug);
 
   if (!service) {
     return { title: "Service Not Found | PanahTech" };
@@ -80,23 +37,17 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ServiceDetailPage({ params }) {
-  const slug = params.slug;
-  const service = servicesData.find((item) => toSlug(item.title) === slug);
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
+  const service = getServiceDetailBySlug(slug);
 
   if (!service) {
     notFound();
   }
 
-  const content = detailContent[slug] ?? {
-    highlight: "Tailored technology solution",
-    outcomes: [
-      "Architecture yang jelas",
-      "Delivery bertahap",
-      "Siap scale untuk jangka panjang",
-    ],
-  };
-
-  const Icon = service.icon;
+  const visualService = getServiceVisualByTitle(service.title);
+  const Icon = visualService?.icon;
+  const iconColor = visualService?.color || "bg-zinc-100 text-zinc-700";
 
   return (
     <>
@@ -105,9 +56,10 @@ export default async function ServiceDetailPage({ params }) {
         <section className="max-w-5xl mx-auto">
           <Link
             href="/services"
-            className="inline-flex items-center text-sm text-primary hover:underline mb-6"
+            className="inline-flex items-center text-sm text-primary hover:text-orange-700 mb-6"
           >
-            ← Kembali ke semua layanan
+            <ChevronLeft className="mr-2" />
+            Kembali ke semua layanan
           </Link>
 
           <div className="bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-3xl p-8 md:p-10 shadow-sm">
@@ -123,47 +75,55 @@ export default async function ServiceDetailPage({ params }) {
                   {service.description}
                 </p>
               </div>
-              <div
-                className={`w-16 h-16 rounded-2xl flex items-center justify-center ${service.color}`}
-              >
-                <Icon size={30} />
-              </div>
+              {Icon && (
+                <div
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center ${iconColor}`}
+                >
+                  <Icon size={30} />
+                </div>
+              )}
             </div>
 
             <div className="mt-8 grid md:grid-cols-2 gap-6">
               <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 p-6 bg-gray-50/60 dark:bg-zinc-950/40">
                 <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
-                  Core Highlight
+                  Full Description
                 </h2>
-                <p className="text-secondary mt-3">{content.highlight}</p>
+                <p className="text-secondary mt-3">{service.fullDescription}</p>
               </div>
               <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 p-6 bg-gray-50/60 dark:bg-zinc-950/40">
                 <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
-                  Deliverables
+                  Price Range
                 </h2>
-                <ul className="mt-3 space-y-2 text-sm text-secondary">
-                  {content.outcomes.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="text-primary">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-secondary mt-3 font-semibold">
+                  {service.price}
+                </p>
+                <p className="text-xs text-secondary mt-2">
+                  * Prices are indicative and may vary based on project scope and requirements. Contact us for a personalized quote.
+                </p>
               </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 rounded-2xl border border-zinc-100 dark:border-zinc-800 p-6 bg-gray-50/60 dark:bg-zinc-950/40">
+              <h2 className="text-lg font-bold text-zinc-900 dark:text-white">
+                Features
+              </h2>
+              <ul className="mt-3 grid sm:grid-cols-2 gap-y-2 gap-x-6 text-sm text-secondary">
+                {service.features.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span className="text-primary">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex">
               <Link
                 href="/contact"
                 className="px-5 py-2.5 rounded-full bg-primary text-white text-sm font-semibold hover:bg-orange-600 transition-colors"
               >
                 Konsultasi sekarang
-              </Link>
-              <Link
-                href="/portfolio"
-                className="px-5 py-2.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:border-primary hover:text-primary transition-colors"
-              >
-                Lihat portofolio
               </Link>
             </div>
           </div>
