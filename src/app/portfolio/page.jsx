@@ -5,9 +5,9 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata = buildPageMetadata({
   title: "Portfolio",
   description:
-    "Lihat portofolio proyek digital PanahTech di bidang web development, AI integration, dan solusi interaktif.",
+    "See PanahTech portfolio projects in web development, AI integration, and interactive digital solutions.",
   path: "/portfolio",
-  keywords: ["portfolio panahtech", "studi kasus", "proyek website"],
+  keywords: ["panahtech portfolio", "case studies", "website projects"],
 });
 
 export default function PortfolioPage() {

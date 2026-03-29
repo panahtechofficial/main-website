@@ -5,9 +5,9 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata = buildPageMetadata({
   title: "Contact",
   description:
-    "Hubungi PanahTech untuk konsultasi, estimasi proyek, dan perencanaan solusi digital untuk bisnis Anda.",
+    "Contact PanahTech for consultation, project estimates, and digital solution planning for your business.",
   path: "/contact",
-  keywords: ["kontak panahtech", "konsultasi website", "konsultasi AI"],
+  keywords: ["contact panahtech", "website consultation", "AI consultation"],
 });
 
 export default function ContactPage() {

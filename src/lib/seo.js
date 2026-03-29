@@ -1,7 +1,9 @@
+const DEFAULT_SITE_URL = "https://panahtech.com";
+
 export const SITE_NAME = "PanahTech";
 export const SITE_URL = "https://panahtech.com";
 export const SITE_DESCRIPTION =
-  "PanahTech membantu bisnis membangun website, integrasi AI, VR, dan solusi IoT dari konsep hingga deployment.";
+  "PanahTech helps businesses build websites, AI integrations, VR experiences, and IoT solutions from concept to deployment.";
 export const OG_IMAGE_PATH = "/images/OG.png";
 
 export const SITE_KEYWORDS = [

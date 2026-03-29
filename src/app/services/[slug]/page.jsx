@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
   if (!service) {
     return {
       title: "Service Not Found",
-      description: "Halaman layanan tidak ditemukan.",
+      description: "The service page was not found.",
       robots: {
         index: false,
         follow: false,
@@ -29,9 +29,9 @@ export async function generateMetadata({ params }) {
     path: `/services/${service.slug}`,
     keywords: [
       service.title,
-      "layanan digital",
-      "pengembangan website",
-      "solusi teknologi",
+      "digital services",
+      "website development",
+      "technology solutions",
     ],
   });
 }

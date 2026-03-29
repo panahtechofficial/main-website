@@ -12,9 +12,9 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata = buildPageMetadata({
   title: "Home",
   description:
-    "PanahTech menyediakan website company profile, online catalogue, AI chatbot, VR, dan IoT untuk membantu bisnis berkembang lebih cepat.",
+    "PanahTech provides company profile websites, online catalogues, AI chatbots, VR, and IoT solutions to help businesses grow faster.",
   path: "/",
-  keywords: ["home", "software house", "jasa website Indonesia"],
+  keywords: ["home", "software house", "website development Indonesia"],
 });
 
 export default function Home() {

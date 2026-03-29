@@ -5,9 +5,13 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata = buildPageMetadata({
   title: "Services",
   description:
-    "Eksplor layanan PanahTech: website bisnis, AI chatbot, VR development, dan solusi IoT sesuai kebutuhan perusahaan.",
+    "Explore PanahTech services: business websites, AI chatbots, VR development, and IoT solutions tailored to your company needs.",
   path: "/services",
-  keywords: ["layanan panahtech", "jasa chatbot", "VR development Indonesia"],
+  keywords: [
+    "panahtech services",
+    "chatbot development",
+    "VR development Indonesia",
+  ],
 });
 
 export default function ServicesPage() {
