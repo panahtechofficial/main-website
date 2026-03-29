@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar"; // Now imported
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/logo-panahtech.webp" />
+        <link rel="icon" href="/logo-panahtech.svg" />
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{
@@ -44,10 +45,12 @@ export default function RootLayout({ children }) {
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider>
-          {/* <Navbar /> */}
-          {children}
-          {/* <Footer /> kept as is, but Navbar added */}
-          <Footer />
+          <LanguageProvider>
+            {/* <Navbar /> */}
+            {children}
+            {/* <Footer /> kept as is, but Navbar added */}
+            <Footer />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

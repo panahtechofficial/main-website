@@ -6,11 +6,12 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import DarkModeToggle from "@/components/ui/DarkModeToggle";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [languageUi, setLanguageUi] = useState("id");
+  const { language, toggleLanguage } = useLanguage();
   const pathname = usePathname();
 
   const SCROLL_TRIGGER = 100;
@@ -40,14 +41,26 @@ export default function Navbar() {
   }, [pathname]);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Contact", href: "/contact" },
+    {
+      name: language === "id" ? "Beranda" : "Home",
+      href: "/",
+    },
+    {
+      name: language === "id" ? "Layanan" : "Services",
+      href: "/services",
+    },
+    {
+      name: language === "id" ? "Portofolio" : "Portfolio",
+      href: "/portfolio",
+    },
+    {
+      name: language === "id" ? "Kontak" : "Contact",
+      href: "/contact",
+    },
   ];
 
   const handleToggleLanguageUi = () => {
-    setLanguageUi((prev) => (prev === "id" ? "en" : "id"));
+    toggleLanguage();
   };
 
   return (
@@ -64,7 +77,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2 group">
             <div className="relative w-16 md:w-20 h-8 md:h-10 overflow-hidden shrink-0">
               <Image
-                src="/logo-panahtech.webp"
+                src="/logo-panahtech.svg"
                 alt="PanahTech Logo"
                 fill
                 sizes="(max-width: 768px) 64px, 80px"
@@ -106,23 +119,23 @@ export default function Navbar() {
             >
               <span
                 className={`absolute text-[10px] font-bold text-zinc-700 dark:text-white/70 transition-all duration-300 ${
-                  languageUi === "id" ? "right-2.5" : "left-3"
+                  language === "id" ? "right-2.5" : "left-3"
                 }`}
               >
-                {languageUi === "id" ? "ID" : "EN"}
+                {language === "id" ? "ID" : "EN"}
               </span>
               <div
                 className={`absolute w-6 h-6 rounded-full bg-white dark:bg-zinc-100 flex items-center justify-center transition-all duration-300 ease-in-out ${
-                  languageUi === "id" ? "left-0.5" : "left-[calc(100%-26px)]"
+                  language === "id" ? "left-0.5" : "left-[calc(100%-26px)]"
                 }`}
               >
                 <Image
                   src={
-                    languageUi === "id"
+                    language === "id"
                       ? "/images/indonesia.png"
                       : "/images/united-kingdom.png"
                   }
-                  alt={languageUi === "id" ? "Indonesia" : "English"}
+                  alt={language === "id" ? "Indonesia" : "English"}
                   width={20}
                   height={20}
                   className="w-5 h-5 rounded-full object-cover"
@@ -173,25 +186,23 @@ export default function Navbar() {
                 >
                   <span
                     className={`absolute text-[9px] font-bold text-zinc-700 dark:text-white/70 transition-all duration-300 ${
-                      languageUi === "id" ? "right-2" : "left-2"
+                      language === "id" ? "right-2" : "left-2"
                     }`}
                   >
-                    {languageUi === "id" ? "ID" : "EN"}
+                    {language === "id" ? "ID" : "EN"}
                   </span>
                   <div
                     className={`absolute w-5 h-5 rounded-full bg-white dark:bg-zinc-100 flex items-center justify-center transition-all duration-300 ease-in-out ${
-                      languageUi === "id"
-                        ? "left-0.5"
-                        : "left-[calc(100%-22px)]"
+                      language === "id" ? "left-0.5" : "left-[calc(100%-22px)]"
                     }`}
                   >
                     <Image
                       src={
-                        languageUi === "id"
+                        language === "id"
                           ? "/images/indonesia.png"
                           : "/images/united-kingdom.png"
                       }
-                      alt={languageUi === "id" ? "Indonesia" : "English"}
+                      alt={language === "id" ? "Indonesia" : "English"}
                       width={16}
                       height={16}
                       className="w-4 h-4 rounded-full object-cover"

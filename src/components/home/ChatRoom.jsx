@@ -7,6 +7,9 @@ import gsap from "gsap";
 import { FaWhatsapp } from "react-icons/fa";
 
 const formatWhatsappLabel = "Lanjut via WhatsApp";
+const chatErrorFallbackMessage =
+  "Maaf, chatbot sedang bermasalah saat ini. Silakan hubungi kami melalui contact form.";
+const contactFormLinkLabel = "Hubungi via Contact Form";
 
 const generateSessionId = () => {
   if (typeof globalThis !== "undefined" && globalThis.crypto) {
@@ -107,7 +110,7 @@ export default function ChatRoom() {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to get AI response");
+      throw new Error("CHAT_SERVICE_UNAVAILABLE");
     }
 
     return response.json();
@@ -157,8 +160,8 @@ export default function ChatRoom() {
         ...nextMessages,
         {
           role: "assistant",
-          content:
-            "Sorry, there is a connection issue with the AI service. Please try again shortly.",
+          content: chatErrorFallbackMessage,
+          contactFormLink: "/contact#contact-form",
         },
       ];
       setMessages(withErrorMessage);
@@ -391,6 +394,14 @@ export default function ChatRoom() {
                     >
                       <FaWhatsapp size={14} className="mr-1" />
                       {formatWhatsappLabel}
+                    </a>
+                  )}
+                  {msg.role === "assistant" && msg.contactFormLink && (
+                    <a
+                      href={msg.contactFormLink}
+                      className="inline-flex mt-2 items-center justify-center bg-white/15 hover:bg-white/25 text-white text-xs font-semibold px-3 py-2 rounded-full transition-colors"
+                    >
+                      {contactFormLinkLabel}
                     </a>
                   )}
                 </div>

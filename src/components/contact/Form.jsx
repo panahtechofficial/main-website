@@ -229,7 +229,7 @@ export default function ContactForm() {
         />
       )}
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+      <form onSubmit={handleSubmit} className="mt-6 space-y-4" id="contact-form">
         {status === "success" && (
           <div className="relative bg-green-50 border border-green-200 text-green-800 p-4 rounded-lg">
             <button
