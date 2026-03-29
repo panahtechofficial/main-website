@@ -43,7 +43,7 @@ export default function ContactPageContent() {
               {language === "id" ? "Kontak Cepat" : "Quick Contact"}
             </h3>
             <p className="text-sm text-secondary mt-3">admin@panahtech.com</p>
-            <p className="text-sm text-secondary">+62 882 1471 7802</p>
+            <p className="text-sm text-secondary">+62 8777 6255 997</p>
             <p className="text-sm text-secondary mt-2">
               {language === "id"
                 ? "Jakarta Timur, DKI Jakarta"

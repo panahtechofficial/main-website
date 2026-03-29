@@ -70,6 +70,9 @@ export default function Showcase() {
   }, [currentIndex, nextSlide]);
 
   const currentProject = portofolio[currentIndex];
+  const hasProjectLink =
+    typeof currentProject?.link === "string" &&
+    currentProject.link.trim().length > 0;
 
   return (
     <div className="w-full flex flex-col gap-6">
@@ -121,14 +124,16 @@ export default function Showcase() {
               </p>
             </div>
 
-            <a
-              href={currentProject.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-primary text-white px-6 py-3 rounded-full font-bold text-sm w-max hover:bg-orange-600 transition-colors inline-block"
-            >
-              {language === "id" ? "Lihat live" : "View live"}
-            </a>
+            {hasProjectLink && (
+              <a
+                href={currentProject.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-white px-6 py-3 rounded-full font-bold text-sm w-max hover:bg-orange-600 transition-colors inline-block"
+              >
+                {language === "id" ? "Lihat live" : "View live"}
+              </a>
+            )}
           </div>
 
           {/* Dot Pagination */}
@@ -170,11 +175,11 @@ export default function Showcase() {
 
         {/* Stats Box */}
         <div className="flex-1 bg-zinc-900 rounded-4xl overflow-hidden relative group min-h-70">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop')] bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-[url('/images/working.webp')] bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center z-10">
-            <h4 className="text-4xl font-bold mb-1">100+</h4>
+            <h4 className="text-4xl font-bold mb-1">Crafting</h4>
             <p className="text-xs uppercase tracking-widest opacity-70">
-              Projects Delivered
+              Smart Solutions
             </p>
           </div>
         </div>

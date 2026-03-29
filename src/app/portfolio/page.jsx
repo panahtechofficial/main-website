@@ -1,10 +1,14 @@
 import Navbar from "@/components/layout/Navbar";
 import PortfolioPageContent from "@/components/pages/PortfolioPageContent";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Portfolio | PanahTech",
-  description: "A showcase of PanahTech digital products and solutions.",
-};
+export const metadata = buildPageMetadata({
+  title: "Portfolio",
+  description:
+    "Lihat portofolio proyek digital PanahTech di bidang web development, AI integration, dan solusi interaktif.",
+  path: "/portfolio",
+  keywords: ["portfolio panahtech", "studi kasus", "proyek website"],
+});
 
 export default function PortfolioPage() {
   return (

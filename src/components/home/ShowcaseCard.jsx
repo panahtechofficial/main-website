@@ -6,7 +6,7 @@ export default function ShowcaseCard() {
   return (
     <div className="w-full lg:w-87.5 h-125 lg:h-137.5 sticky top-6 rounded-4xl overflow-hidden shadow-xl group">
       <Image
-        src="/showcase.webp"
+        src="/images/showcase.webp"
         alt="PanahTech Showcase"
         fill
         priority

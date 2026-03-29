@@ -7,6 +7,15 @@ import ChatRoom from "@/components/home/ChatRoom";
 import FloatingChatButton from "@/components/ui/FloatingChatButton";
 import FloatingModel3D from "@/components/ui/FloatingModel3D";
 import Navbar from "@/components/layout/Navbar";
+import { buildPageMetadata } from "@/lib/seo";
+
+export const metadata = buildPageMetadata({
+  title: "Home",
+  description:
+    "PanahTech menyediakan website company profile, online catalogue, AI chatbot, VR, dan IoT untuk membantu bisnis berkembang lebih cepat.",
+  path: "/",
+  keywords: ["home", "software house", "jasa website Indonesia"],
+});
 
 export default function Home() {
   return (

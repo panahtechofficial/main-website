@@ -1,10 +1,14 @@
 import Navbar from "@/components/layout/Navbar";
 import ServicesPageContent from "@/components/pages/ServicesPageContent";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Services | PanahTech",
-  description: "Explore PanahTech services for web, AI, VR, and IoT solutions.",
-};
+export const metadata = buildPageMetadata({
+  title: "Services",
+  description:
+    "Eksplor layanan PanahTech: website bisnis, AI chatbot, VR development, dan solusi IoT sesuai kebutuhan perusahaan.",
+  path: "/services",
+  keywords: ["layanan panahtech", "jasa chatbot", "VR development Indonesia"],
+});
 
 export default function ServicesPage() {
   return (

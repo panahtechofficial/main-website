@@ -71,7 +71,11 @@ export default function Services() {
         {/* Column 1: Profile (Large) & Chatbot (Small) */}
         <div className="flex flex-col gap-4 flex-1 h-full">
           <ServiceCard service={servicesData[0]} className="flex-2 min-h-0!" />
-          <ServiceCard service={servicesData[3]} className="flex-1 min-h-0!" />
+          <ServiceCard
+            service={servicesData[3]}
+            className="flex-1 min-h-0!"
+            layoutVariant="school-home"
+          />
         </div>
 
         {/* Column 2: Catalogue & VR (Equal) */}
@@ -90,7 +94,13 @@ export default function Services() {
       {/* Mobile/Tablet Fallback */}
       <div className="grid lg:hidden grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl w-full">
         {servicesData.map((service, index) => (
-          <ServiceCard key={index} service={service} />
+          <ServiceCard
+            key={index}
+            service={service}
+            layoutVariant={
+              service.slug === "school-website" ? "school-home" : "default"
+            }
+          />
         ))}
       </div>
     </div>

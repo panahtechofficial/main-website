@@ -109,18 +109,27 @@ export default function Footer() {
             <h4 className="font-bold text-black dark:text-white mb-4">
               Contact
             </h4>
-            <ul className="space-y-2 text-sm">
-              <li className="text-gray-500 dark:text-zinc-400">
+            <div className="flex flex-col space-y-2 text-sm">
+              <a
+                href="mailto:panahtechofficial@gmail.com"
+                className="text-gray-500 mb-2 dark:text-zinc-400 hover:text-primary transition-colors"
+              >
                 panahtechofficial@gmail.com
-              </li>
-              <li className="text-gray-500 dark:text-zinc-400">
+              </a>
+              <a
+                href="https://wa.me/6287776255997"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
+              >
                 +62 8777 6255 997
-              </li>
-              <li className="text-gray-500 dark:text-zinc-400">
-                Jl. Cipinang Muara III. RT 008/04 No.44 Kec. Duren Sawit, Kel.
-                Klender, Jakarta Timur, DKI Jakarta 13470
-              </li>
-            </ul>
+              </a>
+              <p
+                className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
+              >
+                Jakarta Timur, DKI Jakarta 13470
+              </p>
+            </div>
           </div>
         </div>
 

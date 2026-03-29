@@ -43,15 +43,15 @@ export default function CTA() {
 
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row items-center gap-4">
-                            <button className="group flex items-center gap-3 bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50">
+                            <a href="/contact" className="group flex items-center gap-3 bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50">
                                 <span>Let's Collaborate</span>
                                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                            </button>
+                            </a>
                             
-                            <button className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 backdrop-blur-sm">
+                            <a href="https://wa.me/6287776255997" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 backdrop-blur-sm">
                                 <FaWhatsapp className="text-green-400 text-xl" />
                                 <span>WhatsApp</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
 

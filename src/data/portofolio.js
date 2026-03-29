@@ -27,7 +27,7 @@ const portfolioSource = [
       id: "Aplikasi manajemen keuangan berbasis web untuk mencatat pengeluaran, mengatur budget, dan memvisualisasikan data finansial lewat chart interaktif.",
       en: "A web-based finance management application that helps users track expenses, set budgets, and visualize financial data through interactive charts and reports.",
     },
-    image: "https://placehold.co/600x400",
+    image: "/portofolio/finance-management.png",
     link: "",
   },
   {

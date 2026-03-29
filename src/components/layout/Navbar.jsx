@@ -114,7 +114,7 @@ export default function Navbar() {
 
             <button
               onClick={handleToggleLanguageUi}
-              className="relative flex items-center w-17 h-8 rounded-full bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-white/10 hover:border-zinc-400 dark:hover:border-white/20 transition-all duration-300 overflow-hidden"
+              className="relative flex cursor-pointer items-center w-17 h-8 rounded-full bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-white/10 hover:border-zinc-400 dark:hover:border-white/20 transition-all duration-300 overflow-hidden"
               aria-label="Toggle language"
             >
               <span
@@ -149,7 +149,7 @@ export default function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileOpen((prev) => !prev)}
-              className="p-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              className="p-2 rounded-lg cursor-pointer text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
               aria-label="Toggle menu"
             >
               {isMobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -181,7 +181,7 @@ export default function Navbar() {
               <div className="flex-1 flex justify-center h-7 my-2 items-center">
                 <button
                   onClick={handleToggleLanguageUi}
-                  className="relative flex items-center w-15 h-7 rounded-full bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-white/10 hover:border-zinc-400 dark:hover:border-white/20 transition-all duration-300 overflow-hidden"
+                  className="relative cursor-pointer flex items-center w-15 h-7 rounded-full bg-zinc-200 dark:bg-zinc-800 border border-zinc-300 dark:border-white/10 hover:border-zinc-400 dark:hover:border-white/20 transition-all duration-300 overflow-hidden"
                   aria-label="Toggle language"
                 >
                   <span

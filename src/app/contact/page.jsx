@@ -1,11 +1,14 @@
 import Navbar from "@/components/layout/Navbar";
 import ContactPageContent from "@/components/pages/ContactPageContent";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Contact | PanahTech",
+export const metadata = buildPageMetadata({
+  title: "Contact",
   description:
-    "Get in touch with PanahTech for consultation and digital solution planning.",
-};
+    "Hubungi PanahTech untuk konsultasi, estimasi proyek, dan perencanaan solusi digital untuk bisnis Anda.",
+  path: "/contact",
+  keywords: ["kontak panahtech", "konsultasi website", "konsultasi AI"],
+});
 
 export default function ContactPage() {
   return (

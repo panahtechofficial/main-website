@@ -289,7 +289,7 @@ export default function ChatRoom() {
     >
       <div className="absolute inset-0">
         <Image
-          src="/showcase.webp"
+          src="/images/showcase.webp"
           alt="Background"
           fill
           sizes="(max-width: 1024px) 100vw, 380px"
