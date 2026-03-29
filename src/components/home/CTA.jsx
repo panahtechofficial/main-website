@@ -7,7 +7,7 @@ export default function CTA() {
     return (
         <div className="w-full">
             {/* Main CTA Card */}
-            <div className="relative rounded-[32px] bg-linear-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-10 md:p-12 overflow-hidden">
+            <div className="relative rounded-4xl bg-linear-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-10 md:p-12 overflow-hidden">
                 
                 {/* Animated Background Elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">

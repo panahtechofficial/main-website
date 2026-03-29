@@ -1,12 +1,14 @@
 "use client";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 const SUBMIT_LIMIT_KEY = "panahtech:contact-submit-history";
 const SUBMIT_LIMIT_WINDOW_MS = 5 * 60 * 1000;
 const SUBMIT_LIMIT_MAX_SUBMITS = 3;
 
 export default function ContactForm() {
+  const { language } = useLanguage();
   const web3FormsAccessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "";
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "";
   const turnstileContainerRef = useRef(null);
@@ -24,6 +26,59 @@ export default function ContactForm() {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileScriptReady, setTurnstileScriptReady] = useState(false);
+
+  const ui = {
+    missingConfig:
+      language === "id"
+        ? "Konfigurasi form belum lengkap. Silakan set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY."
+        : "Form configuration is incomplete. Please set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY.",
+    invalidSubmission:
+      language === "id"
+        ? "Pengiriman terdeteksi tidak valid."
+        : "The submission is detected as invalid.",
+    requiredFields:
+      language === "id"
+        ? "Semua field wajib diisi."
+        : "All fields are required.",
+    turnstileRequired:
+      language === "id"
+        ? "Verifikasi keamanan belum selesai. Silakan coba lagi."
+        : "Security verification is incomplete. Please try again.",
+    rateLimit: (seconds) =>
+      language === "id"
+        ? `Terlalu sering mengirim form. Coba lagi dalam ${seconds} detik.`
+        : `Too many submissions. Please try again in ${seconds} seconds.`,
+    defaultError:
+      language === "id"
+        ? "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti."
+        : "An error occurred while sending your message. Please try again later.",
+    successFallback:
+      language === "id"
+        ? "Pesan berhasil dikirim. Terima kasih telah menghubungi kami."
+        : "Message sent successfully. Thank you for contacting us.",
+    thankYou: language === "id" ? "Terimakasih!" : "Thank you!",
+    failed: language === "id" ? "Gagal!" : "Failed!",
+    name: language === "id" ? "Nama" : "Name",
+    namePlaceholder: language === "id" ? "Nama Anda" : "Your name",
+    email: "Email",
+    questionType: language === "id" ? "Jenis Pertanyaan" : "Question Type",
+    questionPlaceholder:
+      language === "id" ? "Pilih jenis pertanyaan" : "Select question type",
+    optionGeneral: language === "id" ? "Pertanyaan Umum" : "General Question",
+    optionProject:
+      language === "id" ? "Konsultasi Project" : "Project Consultation",
+    optionSupport: language === "id" ? "Dukungan Teknis" : "Technical Support",
+    message: language === "id" ? "Pesan" : "Message",
+    messagePlaceholder:
+      language === "id"
+        ? "Tulis pesan Anda di sini..."
+        : "Write your message here...",
+    sending: language === "id" ? "Mengirim..." : "Sending...",
+    send: language === "id" ? "Kirim pesan" : "Send message",
+    closeSuccess:
+      language === "id" ? "Tutup pesan sukses" : "Close success message",
+    closeError: language === "id" ? "Tutup pesan error" : "Close error message",
+  };
 
   const getClientRateLimit = () => {
     if (typeof window === "undefined") {
@@ -115,38 +170,32 @@ export default function ContactForm() {
     const { name, email, questionType, message, botcheck } = formData;
 
     if (!web3FormsAccessKey) {
-      setFeedbackMessage(
-        "Konfigurasi form belum lengkap. Silakan set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY.",
-      );
+      setFeedbackMessage(ui.missingConfig);
       setStatus("error");
       return;
     }
 
     if (botcheck) {
-      setFeedbackMessage("Pengiriman terdeteksi tidak valid.");
+      setFeedbackMessage(ui.invalidSubmission);
       setStatus("error");
       return;
     }
 
     if (!name || !email || !questionType || !message) {
-      setFeedbackMessage("Semua field wajib diisi.");
+      setFeedbackMessage(ui.requiredFields);
       setStatus("error");
       return;
     }
 
     if (turnstileSiteKey && !turnstileToken) {
-      setFeedbackMessage(
-        "Verifikasi keamanan belum selesai. Silakan coba lagi.",
-      );
+      setFeedbackMessage(ui.turnstileRequired);
       setStatus("error");
       return;
     }
 
     const clientRateLimit = getClientRateLimit();
     if (clientRateLimit.limited) {
-      setFeedbackMessage(
-        `Terlalu sering mengirim form. Coba lagi dalam ${clientRateLimit.retryAfterSeconds} detik.`,
-      );
+      setFeedbackMessage(ui.rateLimit(clientRateLimit.retryAfterSeconds));
       setStatus("error");
       return;
     }
@@ -190,10 +239,7 @@ export default function ContactForm() {
         );
       }
 
-      setFeedbackMessage(
-        result?.message ||
-          "Pesan berhasil dikirim. Terima kasih telah menghubungi kami.",
-      );
+      setFeedbackMessage(result?.message || ui.successFallback);
       setStatus("success");
       setFormData({
         name: "",
@@ -208,10 +254,7 @@ export default function ContactForm() {
       }
       setTimeout(() => setStatus("idle"), 10000);
     } catch (error) {
-      setFeedbackMessage(
-        error?.message ||
-          "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.",
-      );
+      setFeedbackMessage(error?.message || ui.defaultError);
       setStatus("error");
       if (turnstileWidgetIdRef.current !== null && window.turnstile) {
         window.turnstile.reset(turnstileWidgetIdRef.current);
@@ -229,19 +272,23 @@ export default function ContactForm() {
         />
       )}
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4" id="contact-form">
+      <form
+        onSubmit={handleSubmit}
+        className="mt-6 space-y-4"
+        id="contact-form"
+      >
         {status === "success" && (
           <div className="relative bg-green-50 border border-green-200 text-green-800 p-4 rounded-lg">
             <button
               type="button"
               onClick={() => setStatus("idle")}
               className="absolute cursor-pointer top-2 right-2 text-green-700 hover:text-green-900 transition-colors"
-              aria-label="Close success message"
+              aria-label={ui.closeSuccess}
             >
               ×
             </button>
             <p className="text-green-600 text-sm mb-4">
-              <span className="font-bold">Terimakasih!</span> {feedbackMessage}
+              <span className="font-bold">{ui.thankYou}</span> {feedbackMessage}
             </p>
           </div>
         )}
@@ -251,26 +298,26 @@ export default function ContactForm() {
               type="button"
               onClick={() => setStatus("idle")}
               className="absolute cursor-pointer top-2 right-2 text-red-700 hover:text-red-900 transition-colors"
-              aria-label="Close error message"
+              aria-label={ui.closeError}
             >
               ×
             </button>
             <p className="text-red-600 text-sm mb-4">
-              <span className="font-bold">Gagal!</span> {feedbackMessage}
+              <span className="font-bold">{ui.failed}</span> {feedbackMessage}
             </p>
           </div>
         )}
         <div className="grid md:grid-cols-2 gap-4">
           <label className="block">
             <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Nama
+              {ui.name}
             </span>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Nama Anda"
+              placeholder={ui.namePlaceholder}
               className="mt-2 w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
             />
           </label>
@@ -291,7 +338,7 @@ export default function ContactForm() {
 
         <label className="block">
           <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Jenis Pertanyaan
+            {ui.questionType}
           </span>
           <select
             name="questionType"
@@ -300,24 +347,24 @@ export default function ContactForm() {
             className="mt-2 w-full cursor-pointer rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
           >
             <option value="" disabled>
-              Pilih jenis pertanyaan
+              {ui.questionPlaceholder}
             </option>
-            <option value="general">Pertanyaan Umum</option>
-            <option value="project">Konsultasi Project</option>
-            <option value="support">Dukungan Teknis</option>
+            <option value="general">{ui.optionGeneral}</option>
+            <option value="project">{ui.optionProject}</option>
+            <option value="support">{ui.optionSupport}</option>
           </select>
         </label>
 
         <label className="block">
           <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Pesan
+            {ui.message}
           </span>
           <textarea
             rows={5}
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Tulis pesan Anda di sini..."
+            placeholder={ui.messagePlaceholder}
             className="mt-2 w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-4 py-3 text-sm outline-none focus:border-primary transition-colors resize-none"
           />
         </label>
@@ -344,7 +391,7 @@ export default function ContactForm() {
           disabled={status === "submitting"}
           className="inline-flex cursor-pointer items-center justify-center bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-orange-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {status === "submitting" ? "Mengirim..." : "Kirim pesan"}
+          {status === "submitting" ? ui.sending : ui.send}
         </button>
       </form>
     </>
