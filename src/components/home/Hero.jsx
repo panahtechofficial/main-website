@@ -59,7 +59,7 @@ export default function Hero() {
     return (
         <div ref={containerRef} className="w-full h-screen flex flex-col items-center justify-center relative overflow-hidden">
             <div ref={contentRef} className="flex flex-col items-center z-10">
-                <Image src="/logo-panahtech.webp" alt="Hero" width={269} height={269} priority />
+                <Image src="/logo-panahtech.webp" alt="Hero" width={269} height={269} priority loading="eager" style={{ width: "auto", height: "auto" }} />
                 <div className="text-3xl md:text-4xl sm:px-3 text-black dark:text-white font-[1000] text-center mt-7">
                     <h1>Turning Problem Into</h1>
                     <h1 className="text-primary mt-2">Solutions</h1>
@@ -81,7 +81,7 @@ export default function Hero() {
             </div>
 
             <div ref={cardsRef} className="absolute top-0 left-0 w-full h-full">
-                <GithubCard className="absolute cursor-pointer md:scale-150 md:top-[15%] md:left-[7%] scale-90 -rotate-6 top-[3%] left-[3%]" />
+                <GithubCard className="absolute cursor-pointer md:scale-150 md:top-[15%] md:left-[7%] scale-90 -rotate-6 top-[6%] left-[5%]" />
                 <CoffeeCard className="absolute cursor-pointer md:scale-150 md:top-[40%] md:left-[8%] scale-90 rotate-10 top-[15%] -left-7" />
                 <CodeCard className="absolute cursor-pointer md:scale-150 md:bottom-[15%] md:left-[5%] scale-80 -rotate-3 bottom-[15%] left-[3%]" />
                 <TempCard className="absolute cursor-pointer md:scale-150 md:top-[17%] md:right-[5%] scale-70 rotate-6 top-[9%] right-[2%]" />

@@ -9,7 +9,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="space-y-4">
                         <div className="flex items-center gap-2">
-                            <Image src="/logo-panahtech.webp" alt="Logo" width={100} height={100} />
+                            <Image src="/logo-panahtech.webp" alt="Logo" width={100} height={100} style={{ height: "auto" }} />
                         </div>
                         <p className="text-gray-500 dark:text-zinc-400 text-sm">
                             Building the future with cutting-edge technology solutions.

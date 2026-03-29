@@ -4,8 +4,27 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { Bot, User, Send } from "lucide-react";
 import gsap from "gsap";
+import { FaWhatsapp } from "react-icons/fa";
 
 const formatWhatsappLabel = "Lanjut via WhatsApp";
+
+const generateSessionId = () => {
+  if (typeof globalThis !== "undefined" && globalThis.crypto) {
+    if (typeof globalThis.crypto.randomUUID === "function") {
+      return globalThis.crypto.randomUUID();
+    }
+
+    if (typeof globalThis.crypto.getRandomValues === "function") {
+      const bytes = new Uint8Array(16);
+      globalThis.crypto.getRandomValues(bytes);
+      return Array.from(bytes, (value) =>
+        value.toString(16).padStart(2, "0"),
+      ).join("");
+    }
+  }
+
+  return `sid-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+};
 
 export default function ChatRoom() {
   const [messages, setMessages] = useState([]);
@@ -28,7 +47,7 @@ export default function ChatRoom() {
     const storedSession = sessionStorage.getItem(STORAGE_KEY_SESSION);
     const storedMessages = sessionStorage.getItem(STORAGE_KEY_MESSAGES);
 
-    const nextSessionId = storedSession || crypto.randomUUID();
+    const nextSessionId = storedSession || generateSessionId();
     setSessionId(nextSessionId);
     sessionStorage.setItem(STORAGE_KEY_SESSION, nextSessionId);
 
@@ -185,7 +204,7 @@ export default function ChatRoom() {
   };
 
   const performResetChat = () => {
-    const newSessionId = crypto.randomUUID();
+    const newSessionId = generateSessionId();
 
     setMessages([]);
     messagesRef.current = [];
@@ -270,6 +289,8 @@ export default function ChatRoom() {
           src="/showcase.webp"
           alt="Background"
           fill
+          sizes="(max-width: 1024px) 100vw, 380px"
+          priority
           className="object-cover object-right opacity-20"
         />
         <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/55 to-zinc-900/40"></div>
@@ -302,6 +323,7 @@ export default function ChatRoom() {
             width={messages.length > 0 ? 80 : 100}
             height={30}
             className="grayscale pt-4 brightness-0 invert opacity-90 mb-3 transition-all duration-500"
+            style={{ width: "auto" }}
           />
 
           {messages.length === 0 ? (
@@ -367,6 +389,7 @@ export default function ChatRoom() {
                       rel="noopener noreferrer"
                       className="inline-flex mt-3 items-center justify-center bg-green-500 hover:bg-green-600 text-white text-xs font-semibold px-3 py-2 rounded-full transition-colors"
                     >
+                      <FaWhatsapp size={14} className="mr-1" />
                       {formatWhatsappLabel}
                     </a>
                   )}

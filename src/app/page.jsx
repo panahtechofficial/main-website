@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-50 dark:bg-transparent flex flex-col min-h-screen font-sans transition-colors duration-300">
-        <Hero />
-        <Features />
-        <Services />
+      <div className="bg-gray-50 dark:bg-transparent flex flex-col min-h-screen font-sans transition-colors duration-300 snap-y snap-mandatory">
+        <Hero className="snap-start" />
+        <Features className="snap-start" />
+        <Services className="snap-start" />
         {/* Showcase + CTA with Sticky ChatRoom Sidebar */}
-        <div className="px-4">
+        <div className="px-4 snap-start">
           <div className="max-w-350 mx-auto ">
             <div className="flex flex-col lg:flex-row gap-8 py-20 ">
               {/* Left: Main Content (Showcase + CTA) */}

@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import ChatRoom from "@/components/home/ChatRoom";
+import ContactForm from "@/components/contact/Form";
 
 export const metadata = {
   title: "Contact | PanahTech",
@@ -35,62 +36,7 @@ export default function ContactPage() {
                 Kami biasanya merespon dalam 1x24 jam kerja.
               </p>
 
-              <form className="mt-6 space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <label className="block">
-                    <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                      Nama
-                    </span>
-                    <input
-                      type="text"
-                      placeholder="Nama Anda"
-                      className="mt-2 w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                      Email
-                    </span>
-                    <input
-                      type="email"
-                      placeholder="email@domain.com"
-                      className="mt-2 w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-4 py-3 text-sm outline-none focus:border-primary transition-colors"
-                    />
-                  </label>
-                </div>
-
-                <label className="block">
-                  <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Jenis Project
-                  </span>
-                  <select className="mt-2 w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-4 py-3 text-sm outline-none focus:border-primary transition-colors">
-                    <option>Company Profile</option>
-                    <option>Online Catalogue</option>
-                    <option>School Website</option>
-                    <option>AI Chatbot</option>
-                    <option>VR Development</option>
-                    <option>IoT Solutions</option>
-                  </select>
-                </label>
-
-                <label className="block">
-                  <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Pesan
-                  </span>
-                  <textarea
-                    rows={5}
-                    placeholder="Ceritakan kebutuhan project Anda..."
-                    className="mt-2 w-full rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-4 py-3 text-sm outline-none focus:border-primary transition-colors resize-none"
-                  />
-                </label>
-
-                <button
-                  type="button"
-                  className="inline-flex items-center justify-center bg-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-orange-600 transition-colors"
-                >
-                  Kirim pesan
-                </button>
-              </form>
+              <ContactForm />
             </div>
 
             <div className="space-y-4">

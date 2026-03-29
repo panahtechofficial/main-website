@@ -9,6 +9,7 @@ export default function ShowcaseCard() {
                 src="/showcase.webp"
                 alt="PanahTech Showcase"
                 fill
+                priority
                 className="object-cover object-right transition-transform duration-700 group-hover:scale-105"
             />
             {/* Overlay Gradient */}
@@ -23,6 +24,7 @@ export default function ShowcaseCard() {
                     width={100}
                     height={30}
                     className="grayscale brightness-0 invert opacity-90 pointer-events-none"
+                    style={{ height: "auto" }}
                 />
 
                 {/* Middle/Bottom Text */}

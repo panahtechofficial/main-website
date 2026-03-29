@@ -6,12 +6,19 @@ export const portofolio = [
         image: "/portofolio/borbore.webp",
         link: "https://borboreofficial.id",
     },
+    // {
+    //     id: 2,
+    //     title: "Irsyan Ramadhan - Personal Website",
+    //     description: "A personal website for Irsyan Ramadhan, a software engineer based in Jakarta, Indonesia.",
+    //     image: "https://placehold.co/600x400",
+    //     link: "https://irsyanramadhan.my.id",
+    // },
     {
         id: 2,
-        title: "Irsyan Ramadhan - Personal Website",
-        description: "A personal website for Irsyan Ramadhan, a software engineer based in Jakarta, Indonesia.",
+        title: "Finance Management App",
+        description: "A Web-based finance management application that helps users track expenses, set budgets, and visualize financial data through interactive charts and reports.",
         image: "https://placehold.co/600x400",
-        link: "https://irsyanramadhan.my.id",
+        link: "",
     },
     {
         id: 3,
