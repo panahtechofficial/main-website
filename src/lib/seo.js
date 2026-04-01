@@ -108,6 +108,7 @@ export function buildPageMetadata({
   title,
   description,
   path = "/",
+  yandexVerification,
   keywords = [],
   images = [
     {
@@ -141,6 +142,9 @@ export function buildPageMetadata({
       title,
       description,
       images: images.map((image) => image.url),
+    },
+    other: {
+      "yandex-verification": yandexVerification,
     },
   };
 }
