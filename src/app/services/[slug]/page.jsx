@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
   }
 
   return buildPageMetadata({
-    title: service.title,
+    title: `PanahTech - ${service.title}`,
     description: service.description,
     path: `/services/${service.slug}`,
     keywords: [
@@ -33,6 +33,7 @@ export async function generateMetadata({ params }) {
       "website development",
       "technology solutions",
     ],
+    yandexVerification: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
   });
 }
 

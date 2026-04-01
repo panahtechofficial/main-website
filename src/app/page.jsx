@@ -10,12 +10,12 @@ import Navbar from "@/components/layout/Navbar";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Home",
+  title: "PanahTech - Home",
   description:
     "PanahTech provides company profile websites, online catalogues, AI chatbots, VR, and IoT solutions to help businesses grow faster.",
   path: "/",
   keywords: ["home", "software house", "website development Indonesia"],
-  yandexVerification: "9080c0be7db6bed3",
+  yandexVerification: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
 });
 
 export default function Home() {

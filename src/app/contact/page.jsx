@@ -3,11 +3,12 @@ import ContactPageContent from "@/components/pages/ContactPageContent";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Contact",
+  title: "PanahTech - Contact",
   description:
     "Contact PanahTech for consultation, project estimates, and digital solution planning for your business.",
   path: "/contact",
   keywords: ["contact panahtech", "website consultation", "AI consultation"],
+  yandexVerification: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
 });
 
 export default function ContactPage() {

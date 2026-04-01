@@ -3,7 +3,7 @@ import ServicesPageContent from "@/components/pages/ServicesPageContent";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Services",
+  title: "PanahTech - Services",
   description:
     "Explore PanahTech services: business websites, AI chatbots, VR development, and IoT solutions tailored to your company needs.",
   path: "/services",
@@ -12,6 +12,7 @@ export const metadata = buildPageMetadata({
     "chatbot development",
     "VR development Indonesia",
   ],
+  yandexVerification: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
 });
 
 export default function ServicesPage() {

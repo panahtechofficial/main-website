@@ -3,11 +3,12 @@ import PortfolioPageContent from "@/components/pages/PortfolioPageContent";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
-  title: "Portfolio",
+  title: "PanahTech - Portfolio",
   description:
     "See PanahTech portfolio projects in web development, AI integration, and interactive digital solutions.",
   path: "/portfolio",
   keywords: ["panahtech portfolio", "case studies", "website projects"],
+  yandexVerification: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
 });
 
 export default function PortfolioPage() {
