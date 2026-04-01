@@ -117,7 +117,7 @@ export default function Footer() {
                 panahtechofficial@gmail.com
               </a>
               <a
-                href="https://wa.me/+6287824575622"
+                href="https://wa.me/6287824575622"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"

@@ -48,7 +48,7 @@ export default function CTA() {
                                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                             </a>
                             
-                            <a href="https://wa.me/6287776255997" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 backdrop-blur-sm">
+                            <a href="https://wa.me/6287824575622" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 backdrop-blur-sm">
                                 <FaWhatsapp className="text-green-400 text-xl" />
                                 <span>WhatsApp</span>
                             </a>

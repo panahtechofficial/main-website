@@ -15,6 +15,7 @@ export const metadata = buildPageMetadata({
     "PanahTech provides company profile websites, online catalogues, AI chatbots, VR, and IoT solutions to help businesses grow faster.",
   path: "/",
   keywords: ["home", "software house", "website development Indonesia"],
+  yandexVerification: "9080c0be7db6bed3",
 });
 
 export default function Home() {
