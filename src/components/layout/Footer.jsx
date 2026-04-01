@@ -117,12 +117,12 @@ export default function Footer() {
                 panahtechofficial@gmail.com
               </a>
               <a
-                href="https://wa.me/6287776255997"
+                href="https://wa.me/+6287824575622"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
               >
-                +62 8777 6255 997
+                  +62 878 2457 5622
               </a>
               <p
                 className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"

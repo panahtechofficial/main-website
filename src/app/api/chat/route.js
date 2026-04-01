@@ -3,7 +3,7 @@ import { servicesData } from "@/data/services";
 import { portofolio } from "@/data/portofolio";
 
 const MODEL = "gemini-3.1-flash-lite-preview";
-const WA_NUMBER = "6287776255997";
+const WA_NUMBER = "6287824575622";
 
 const SERVICES_CONTEXT = servicesData
   .map((service, index) => {
