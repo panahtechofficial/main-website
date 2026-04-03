@@ -7,7 +7,9 @@ import ChatRoom from "@/components/home/ChatRoom";
 import FloatingChatButton from "@/components/ui/FloatingChatButton";
 import FloatingModel3D from "@/components/ui/FloatingModel3D";
 import Navbar from "@/components/layout/Navbar";
+import JsonLd from "@/components/seo/JsonLd";
 import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "PanahTech - Home",
@@ -22,6 +24,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <JsonLd data={buildBreadcrumbSchema([{ name: "Home", url: "/" }])} />
       <div className="bg-gray-50 dark:bg-transparent flex flex-col min-h-screen font-sans transition-colors duration-300 snap-y snap-mandatory">
         <Hero className="snap-start" />
         <Features className="snap-start" />

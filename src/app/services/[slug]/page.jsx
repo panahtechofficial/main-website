@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import ServiceDetailContent from "@/components/pages/ServiceDetailContent";
+import JsonLd from "@/components/seo/JsonLd";
 import { getServiceDetailBySlug, getServiceDetails } from "@/data/services";
 import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema } from "@/lib/seo";
 
 export async function generateStaticParams() {
   return getServiceDetails("id").map((service) => ({ slug: service.slug }));
@@ -48,6 +50,13 @@ export default async function ServiceDetailPage({ params }) {
   return (
     <>
       <Navbar />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+          { name: service.title, url: `/services/${service.slug}` },
+        ])}
+      />
       <main className="min-h-screen bg-gray-50 dark:bg-transparent pt-36 pb-16 px-4 transition-colors duration-300">
         <ServiceDetailContent slug={resolvedParams.slug} />
       </main>

@@ -1,6 +1,8 @@
 import Navbar from "@/components/layout/Navbar";
 import ServicesPageContent from "@/components/pages/ServicesPageContent";
+import JsonLd from "@/components/seo/JsonLd";
 import { buildPageMetadata } from "@/lib/seo";
+import { buildBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "PanahTech - Services",
@@ -19,6 +21,12 @@ export default function ServicesPage() {
   return (
     <>
       <Navbar />
+      <JsonLd
+        data={buildBreadcrumbSchema([
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+        ])}
+      />
       <main className="min-h-screen bg-gray-50 dark:bg-transparent pt-36 pb-16 px-4 transition-colors duration-300">
         <ServicesPageContent />
       </main>

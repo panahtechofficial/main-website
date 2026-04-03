@@ -4,7 +4,10 @@ import Navbar from "@/components/layout/Navbar"; // Now imported
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { LanguageProvider } from "@/context/LanguageContext";
+import JsonLd from "@/components/seo/JsonLd";
 import {
+  buildOrganizationSchema,
+  buildWebSiteSchema,
   SITE_DESCRIPTION,
   SITE_KEYWORDS,
   SITE_NAME,
@@ -70,9 +73,16 @@ export const metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/logo-panahtech.svg", type: "image/svg+xml" }],
-    shortcut: ["/logo-panahtech.svg"],
-    apple: [{ url: "/logo-panahtech.svg" }],
+    icon: [
+      { url: "/panahtech_tablogo.webp", type: "image/webp" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/logo-panahtech.svg", type: "image/svg+xml" },
+    ],
+    shortcut: ["/panahtech_tablogo.webp"],
+    apple: [
+      { url: "/panahtech_tablogo.webp", type: "image/webp" },
+      { url: "/apple-icon.svg", type: "image/svg+xml" },
+    ],
   },
 };
 
@@ -88,7 +98,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/logo-panahtech.svg" />
+        <link rel="icon" href="/panahtech_tablogo.webp" type="image/webp" />
         {/* Prevent flash of wrong theme */}
         <script
           dangerouslySetInnerHTML={{
@@ -108,6 +118,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased overflow-x-hidden`}
       >
+        <JsonLd data={buildOrganizationSchema()} />
+        <JsonLd data={buildWebSiteSchema()} />
         <ThemeProvider>
           <LanguageProvider>
             {/* <Navbar /> */}
