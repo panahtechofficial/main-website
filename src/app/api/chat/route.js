@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { servicesData } from "@/data/services";
-import { portofolio } from "@/data/portofolio";
+import { servicesData } from "@/lib/services";
+import { portofolio } from "@/lib/portofolio";
 
 const MODEL = "gemini-3.1-flash-lite-preview";
 const WA_NUMBER = "6287824575622";

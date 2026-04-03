@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef, useState, useEffect, useCallback } from "react";
 import gsap from "gsap";
 import LogoMarquee from "../ui/LogoMarquee";
-import { getPortofolio } from "@/data/portofolio";
+import { getPortofolio } from "@/lib/portofolio";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Showcase() {

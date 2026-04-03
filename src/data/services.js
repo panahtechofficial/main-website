@@ -1,15 +1,7 @@
 import { Cpu, GalleryHorizontalEnd, Code } from "lucide-react";
 import { FaRobot, FaBuilding, FaGraduationCap, FaBox } from "react-icons/fa";
 
-const pickText = (value, language) => {
-  if (typeof value === "string") {
-    return value;
-  }
-
-  return value?.[language] || value?.id || "";
-};
-
-const servicesSource = [
+export const servicesSource = [
   {
     slug: "company-profile",
     title: { id: "Company Profile", en: "Company Profile" },
@@ -87,7 +79,7 @@ const servicesSource = [
   },
 ];
 
-const serviceDetailsSource = [
+export const serviceDetailsSource = [
   {
     id: 1,
     slug: "company-profile",
@@ -117,8 +109,12 @@ const serviceDetailsSource = [
       ],
     },
     price: {
-      id: "Rp2.000.000 - Rp6.000.000",
-      en: "Rp2,000,000 - Rp6,000,000",
+      id: "Rp2.000.000",
+      en: "Rp2,000,000",
+    },
+    promoPrice: {
+      id: "Mulai Rp850.000",
+      en: "Start from Rp850,000",
     },
   },
   {
@@ -150,8 +146,12 @@ const serviceDetailsSource = [
       ],
     },
     price: {
-      id: "Rp3.000.000 - Rp8.000.000",
-      en: "Rp3,000,000 - Rp8,000,000",
+      id: "Rp3.000.000",
+      en: "Rp3,000,000",
+    },
+    promoPrice: {
+      id: "Mulai Rp1.499.000",
+      en: "Start from Rp1,499,000",
     },
   },
   {
@@ -183,8 +183,8 @@ const serviceDetailsSource = [
       ],
     },
     price: {
-      id: "Mulai dari Rp3.000.000 (menyesuaikan kebutuhan fitur)",
-      en: "Starting from Rp3,000,000 (depends on feature requirements)",
+      id: "Mulai dari Rp2.000.000 (menyesuaikan kebutuhan fitur)",
+      en: "Starting from Rp2,000,000 (depends on feature requirements)",
     },
   },
   {
@@ -216,8 +216,12 @@ const serviceDetailsSource = [
       ],
     },
     price: {
-      id: "Rp4.000.000 - Rp10.000.000",
-      en: "Rp4,000,000 - Rp10,000,000",
+      id: "Rp10.000.000",
+      en: "Rp10,000,000",
+    },
+    promoPrice: {
+      id: "Mulai Rp4.999.000",
+      en: "Start from Rp4,999,000",
     },
   },
   {
@@ -249,8 +253,12 @@ const serviceDetailsSource = [
       ],
     },
     price: {
-      id: "Rp5.000.000 - Rp12.000.000",
-      en: "Rp5,000,000 - Rp12,000,000",
+      id: "Rp5.000.000",
+      en: "Rp5,000,000",
+    },
+    promoPrice: {
+      id: "Mulai Rp2.499.000",
+      en: "Start from Rp2,499,000",
     },
   },
   {
@@ -285,6 +293,10 @@ const serviceDetailsSource = [
       id: "Rp6.000.000 - Rp20.000.000",
       en: "Rp6,000,000 - Rp20,000,000",
     },
+    promoPrice: {
+      id: "Mulai Rp3.499.000",
+      en: "Start from Rp3,499,000",
+    },
   },
   {
     id: 7,
@@ -318,32 +330,9 @@ const serviceDetailsSource = [
       id: "Rp8.000.000 - Rp25.000.000",
       en: "Rp8,000,000 - Rp25,000,000",
     },
+    promoPrice: {
+      id: "Mulai Rp6.499.000",
+      en: "Start from Rp6,499,000",
+    },
   },
 ];
-
-export const getServicesData = (language = "id") =>
-  servicesSource.map((item) => ({
-    ...item,
-    title: pickText(item.title, language),
-    description: pickText(item.description, language),
-    badge: item.badge ? pickText(item.badge, language) : undefined,
-  }));
-
-export const getServiceDetails = (language = "id") =>
-  serviceDetailsSource.map((item) => ({
-    ...item,
-    title: pickText(item.title, language),
-    description: pickText(item.description, language),
-    fullDescription: pickText(item.fullDescription, language),
-    features: item.features?.[language] || item.features?.id || [],
-    price: pickText(item.price, language),
-  }));
-
-export const getServiceDetailBySlug = (slug, language = "id") =>
-  getServiceDetails(language).find((item) => item.slug === slug);
-
-export const getServiceVisualBySlug = (slug, language = "id") =>
-  getServicesData(language).find((item) => item.slug === slug);
-
-export const servicesData = getServicesData("id");
-export const serviceDetails = getServiceDetails("id");

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import ServiceCard from "@/components/home/ServiceCard";
-import { getServicesData } from "@/data/services";
+import { getServicesData } from "@/lib/services";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ServicesPageContent() {

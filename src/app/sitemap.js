@@ -1,4 +1,4 @@
-import { getServiceDetails } from "@/data/services";
+import { getServiceDetails } from "@/lib/services";
 import { SITE_URL } from "@/lib/seo";
 
 export default function sitemap() {

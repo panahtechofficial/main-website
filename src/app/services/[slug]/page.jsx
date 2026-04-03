@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import ServiceDetailContent from "@/components/pages/ServiceDetailContent";
 import JsonLd from "@/components/seo/JsonLd";
-import { getServiceDetailBySlug, getServiceDetails } from "@/data/services";
+import { getServiceDetailBySlug, getServiceDetails } from "@/lib/services";
 import { buildPageMetadata } from "@/lib/seo";
 import { buildBreadcrumbSchema } from "@/lib/seo";
 

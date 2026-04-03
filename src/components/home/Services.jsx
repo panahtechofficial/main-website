@@ -1,6 +1,6 @@
 "use client";
 
-import { getServicesData } from "@/data/services";
+import { getServicesData } from "@/lib/services";
 import ServiceCard from "./ServiceCard";
 import { useRef } from "react";
 import gsap from "gsap";

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { getPortofolio } from "@/data/portofolio";
+import { getPortofolio } from "@/lib/portofolio";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function PortfolioPageContent() {
