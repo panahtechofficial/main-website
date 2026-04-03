@@ -30,7 +30,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="#"
+                  href="/"
                   className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
                 >
                   Home
@@ -38,7 +38,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/services"
                   className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
                 >
                   Services
@@ -46,15 +46,15 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/portfolio"
                   className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
                 >
-                  Projects
+                  Portfolio
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/contact"
                   className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
                 >
                   Contact
@@ -71,7 +71,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href="#"
+                  href="/services/custom-website"
                   className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
                 >
                   Web Development
@@ -79,7 +79,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/services/ai-chatbot"
                   className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
                 >
                   AI Integration
@@ -87,7 +87,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/services/iot-solutions"
                   className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
                 >
                   IoT Solutions
@@ -95,10 +95,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/services/vr-development"
                   className="text-gray-500 dark:text-zinc-400 hover:text-primary transition-colors"
                 >
-                  Mobile Apps
+                  VR Development
                 </a>
               </li>
             </ul>
